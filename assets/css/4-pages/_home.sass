@@ -1,0 +1,25 @@
+.carousel
+    @extend .clearfix
+    .container
+        min-height: 400px
+        border: 1px solid #CCC
+
+.news-wrapper
+    @extend .clearfix
+    div[class*="c-"]
+        min-height: 300px
+        border: 1px solid #CCC
+
+.video-wrapper
+    @extend .clearfix
+    .container
+        min-height: 400px
+        border: 1px solid #CCC
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        .flex-video-wrap
+            max-width: 560px
+            display: inline-block
+            width: 90%
