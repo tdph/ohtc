@@ -14,29 +14,53 @@
         position: center
         //attachment: fixed
 
-.news-wrapper
+.home-content-wrapper
     @extend .clearfix
-    div[class*="c-"]
-        min-height: 300px
-        //border: 1px solid #CCC
+    & > div:first-child
+        @extend .clearfix
+        padding: 40px
+    a
+        float: right
 
-.news-1
+.aboutus
+    div
+        min-height: 290px
     .details
         background-color: $tc2
     .image
         background: url(../img/home/news/image1.jpg) no-repeat
         background-size: cover
         background-position: center
-.news-2
+.services
+    div
+        min-height: 390px
+        @media (max-width: $md-max)
+            min-height: 415px
+        @media (max-width: $sm-max)
+            min-height: 435px
+        @media (max-width: $xs-max)
+            min-height: 385px
     .details
         background-color: $tc1
+        color: white
     .image
         background: url(../img/home/news/image2.jpg) no-repeat
         background-size: cover
         background-position: center
-.news-3
+.news
+    div
+        min-height: 330px
+        @media (max-width: $md-max)
+            min-height: 355px
+        @media (max-width: $sm-max)
+            min-height: 375px
+        @media (max-width: $xs-max)
+            min-height: 300px
     .details
         background-color: $tc4
+        p
+            color: #555
+            text-align: justify
     .image
         background: url(../img/home/news/image3.jpg) no-repeat
         background-size: cover
