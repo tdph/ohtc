@@ -1,13 +1,18 @@
+.content
+    margin-top: 160px
+    margin-bottom: 40px
+    //box-shadow: 0 50px 30px -30px rgba(0,0,0,0.3)
+    box-shadow: 0 0 20px rgba(0,0,0,0.3)
+
 .carousel
     @extend .clearfix
-    margin-top: 120px
-    height: 700px
+    height: 600px
     max-height: calc(100vh - 120px)
     background: url(../img/home/carousel/image1.jpg) no-repeat
     background:
         size: cover
         position: center
-        attachment: fixed
+        //attachment: fixed
 
 .news-wrapper
     @extend .clearfix
@@ -43,14 +48,14 @@
     background: url(../img/home/news/image4.jpg) no-repeat
     background-size: cover
     background-position: center
-    .container
-        min-height: 400px
-        display: flex
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        .flex-video-wrap
-            max-width: 560px
-            display: inline-block
-            width: 90%
-            box-shadow: 0 50px 30px -30px rgba(0,0,0,0.3)
+    //.container
+    min-height: 400px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    .flex-video-wrap
+        max-width: 560px
+        display: inline-block
+        width: 90%
+        box-shadow: 0 50px 30px -30px rgba(0,0,0,0.3)
