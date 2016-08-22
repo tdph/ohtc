@@ -1,8 +1,11 @@
 .carousel
     @extend .clearfix
-    .container
-        min-height: 400px
-        border: 1px solid #CCC
+    margin-top: 120px
+    min-height: 500px
+    max-height: 100vh
+    background: url(../img/home/carousel/image1.jpg)
+    background-size: cover
+    background-position: center
 
 .news-wrapper
     @extend .clearfix
@@ -10,11 +13,36 @@
         min-height: 300px
         //border: 1px solid #CCC
 
+.news-1
+    background-color: $tc2
+    .details
+    .image
+        background: url(../img/home/news/image1.jpg)
+        background-size: cover
+        background-position: center
+.news-2
+    background-color: $tc1
+    .details
+    .image
+        background: url(../img/home/news/image2.jpg)
+        background-size: cover
+        background-position: center
+.news-3
+    background-color: $tc4
+    .details
+    .image
+        background: url(../img/home/news/image3.jpg)
+        background-size: cover
+        background-position: center
+
 .video-wrapper
     @extend .clearfix
+    width: 100%
+    background: url(../img/home/news/image4.jpg)
+    background-size: cover
+    background-position: center
     .container
         min-height: 400px
-        border: 1px solid #CCC
         display: flex
         flex-direction: column
         justify-content: center
@@ -23,26 +51,4 @@
             max-width: 560px
             display: inline-block
             width: 90%
-            box-shadow: 0 0 20px rgba(0,0,0,0.7)
-
-.news-1
-    .details
-        background-color: $tc2
-    .image
-        background: url(../img/news/home/image1.jpg)
-        background-size: cover
-        background-position: center
-.news-2
-    .details
-        background-color: $tc1
-    .image
-        background: url(../img/news/home/image2.jpg)
-        background-size: cover
-        background-position: center
-.news-3
-    .details
-        background-color: $tc4
-    .image
-        background: url(../img/news/home/image3.jpg)
-        background-size: cover
-        background-position: center
+            box-shadow: 0 50px 30px -30px rgba(0,0,0,0.3)
