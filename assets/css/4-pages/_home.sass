@@ -1,11 +1,13 @@
 .carousel
     @extend .clearfix
     margin-top: 120px
-    min-height: 500px
-    max-height: 100vh
-    background: url(../img/home/carousel/image1.jpg)
-    background-size: cover
-    background-position: center
+    height: 500px
+    max-height: calc(100vh - 120px)
+    background: url(../img/home/carousel/image1.jpg) no-repeat
+    background:
+        size: cover
+        position: center
+        attachment: fixed
 
 .news-wrapper
     @extend .clearfix
@@ -17,28 +19,28 @@
     background-color: $tc2
     .details
     .image
-        background: url(../img/home/news/image1.jpg)
+        background: url(../img/home/news/image1.jpg) no-repeat
         background-size: cover
         background-position: center
 .news-2
     background-color: $tc1
     .details
     .image
-        background: url(../img/home/news/image2.jpg)
+        background: url(../img/home/news/image2.jpg) no-repeat
         background-size: cover
         background-position: center
 .news-3
     background-color: $tc4
     .details
     .image
-        background: url(../img/home/news/image3.jpg)
+        background: url(../img/home/news/image3.jpg) no-repeat
         background-size: cover
         background-position: center
 
 .video-wrapper
     @extend .clearfix
     width: 100%
-    background: url(../img/home/news/image4.jpg)
+    background: url(../img/home/news/image4.jpg) no-repeat
     background-size: cover
     background-position: center
     .container
