@@ -3,9 +3,9 @@
     width: 100%
     background-color: $tc1
     color: white
-    box-shadow: 0 0 20px rgba(0,0,0,0.5)
-    z-index: 999
-    position: absolute
+    box-shadow: 0 0 10px rgba(0,0,0,0.5)
+    z-index: 998
+    position: fixed
     top: 0
     left: 0
     .container
@@ -23,6 +23,51 @@
             padding: 10px 15px
             cursor: pointer
             transition: all 0.3s ease-in-out
+    .toggle
+        cursor: pointer
+        position: absolute
+        left: 17px
+        top: 17px
+        width: 40px
+        height: 40px
+        border: 1px solid #CCC
+        display: none
+        border-radius: 3px
+        .bar
+            float: left
+            width: 70%
+            height: 3px
+            margin: 3px 15%
+            background-color: #EEE
+            &:first-child
+                margin-top: 8px
+    @media (max-width: $sm-max)
+        .container
+            padding: 0
+        .search-form
+            padding: 20px
+        .nav
+            float: left
+            width: 100%
+            padding: 0
+            max-height: 0
+            overflow: hidden
+            transition: all 0.5s ease-in-out
+            z-index: 998
+            li
+                width: 100%
+                border-radius: 0
+                text-align: left
+                border-bottom: 1px solid darken($tc1, 5%) !important
+                &:last-child
+                    border: none !important
+                &:hover
+                    background-color: $tc2
+        .toggle
+            display: block
+
+.toggle-nav
+    max-height: 346px !important
 
 .search-form
     width: 100%
@@ -37,3 +82,5 @@
     position: absolute
     top: 0
     left: 0
+    @media (max-width: $sm-max)
+        display: none

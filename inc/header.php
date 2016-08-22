@@ -11,6 +11,11 @@
         <div class="wrapper flat-theme">
             <nav class="nav_container">
                 <div class="container clearfix">
+                    <div class="toggle">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
                     <img class="logo" src="assets/img/ohtc-logo.png" alt="" />
                     <form class="search-form" method="post" onsubmit="return false;">
                         <input type="search" name="search-box" placeholder="Search...">
