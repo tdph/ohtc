@@ -49,13 +49,13 @@
     width: 100%
     padding: 50px
     @extend .clearfix
-    background: url(../img/home/news/image4.jpg) no-repeat
     background-size: cover
     background-position: center
     div
         min-height: 200px
 
 #description
+    background: url(../img/aboutus/about1.jpg) no-repeat
     padding: 0 50px
     @media (max-width: $xs-max)
         padding: 0 20px
@@ -64,17 +64,36 @@
 
 #trainingprog
     padding: 0
-    & > div:first-child
-        padding: 20px 50px
+    & > div
+        min-height: 345px
+        @media (max-width: $md-max)
+            min-height: 380px
+        @media (max-width: $sm-max)
+            min-height: 425px
         @media (max-width: $xs-max)
-            padding: 20px
-        background-color: white
+            min-height: 340px
+        &:first-child
+            padding: 20px 50px
+            @media (max-width: $xs-max)
+                padding: 20px
+            background-color: white
+        &:last-child
+            background: url(../img/aboutus/image1.jpg) no-repeat
+            background-size: cover
+            background-position: center
 
 #vision, #mission, #values
-    border: 1px solid $tc1
     padding: 20px 50px
     @media (max-width: $xs-max)
         padding: 20px
+#vision
+    background: url(../img/aboutus/about2.jpg) no-repeat
+
+#mission
+    background: url(../img/aboutus/about3.jpg) no-repeat
+
+#values
+    background: url(../img/aboutus/about4.jpg) no-repeat
 
 .ot_wrapper
     width: 100%

@@ -67,7 +67,7 @@
             <div class="details">
                 <h4>Edgar Alquisada</h4>
                 <h5>Catering Manager</h5>
-                <p>Sir Edgar is a Hotel and Restaurant expert with 30 years of shipboard experience./p>
+                <p>Sir Edgar is a Hotel and Restaurant expert with 30 years of shipboard experience.</p>
             </div>
         </div>
         <div class="c-xs-6 c-sm-3">
@@ -89,19 +89,19 @@
     </div>
     <div class="ot_wrapper">
         <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/bastillo.jpg" alt="bastillo" />
-            <div class="details">
-                <h4>Cornelio Bastillo</h4>
-                <h5>Chef the Cuisine and Supervisor for E-learning Programs</h5>
-                <p>Chef Jolas is a catering professional with more than 25 Years’ experience as Executive Chef and Camp Boss on international trading vessels and remote areas.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
             <img src="assets/img/aboutus/ourteam/encarnacion.jpg" alt="encarnacion" />
             <div class="details">
                 <h4>Marlon Encarnacion</h4>
                 <h5>Head Culinary Instructor</h5>
                 <p>Chef Marlon is a culinary expert with more than 15 years of shipboard experience.</p>
+            </div>
+        </div>
+        <div class="c-xs-6 c-sm-3">
+            <img src="assets/img/aboutus/ourteam/bastillo.jpg" alt="bastillo" />
+            <div class="details">
+                <h4>Cornelio Bastillo</h4>
+                <h5>Chef the Cuisine and Supervisor for E-learning Programs</h5>
+                <p>Chef Jolas is a catering professional with more than 25 Years’ experience as Executive Chef and Camp Boss on international trading vessels and remote areas.</p>
             </div>
         </div>
         <div class="c-xs-6 c-sm-3">

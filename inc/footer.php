@@ -3,9 +3,9 @@
 <footer>
 <div class="social-link">
     <a href="https://www.facebook.com/ohtcmla" target="_blank"><img src="assets/img/social-facebook1.svg" alt="" class="facebook"></a>
-    <a href="" target="_blank"><img src="assets/img/social-pinterest1.svg" alt="" class="pinterest"></a>
-    <a href="" target="_blank"><img src="assets/img/social-instagram1.svg" alt="" class="instagram"></a>
-    <a href="" target="_blank"><img src="assets/img/social-twitter1.svg" alt="" class="twitter"></a>
+    <a href="https://www.pinterest.com/oceanichtc/" target="_blank"><img src="assets/img/social-pinterest1.svg" alt="" class="pinterest"></a>
+    <a href="https://www.instagram.com/oceanichtc/" target="_blank"><img src="assets/img/social-instagram1.svg" alt="" class="instagram"></a>
+    <a href="https://twitter.com/theoceanichtc" target="_blank"><img src="assets/img/social-twitter1.svg" alt="" class="twitter"></a>
 </div>
 <p>Copyright &copy; 2016. <a href="#">V. Culinary, Culinary and Hospitality Training Centre.</a><br />All Rights Reserved.</p>
 </footer>
