@@ -10,4 +10,10 @@ $( document ).ready(function() {
     $('.toggle').on('click', function() {
         $('.nav').toggleClass('toggle-nav');
     })
+    // Navigate to About Us
+    $('.aboutus-tabs div').on('click', function() {
+        var id = $(this).data("id");
+        $('.aboutus-tab-page').fadeOut(200).delay(200);
+        $('#'+id).fadeIn(200)
+    })
 });
