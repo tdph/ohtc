@@ -1,7 +1,7 @@
 <?php include('inc/header.php'); ?>
-<section class="carousel">
-
-</section>
+<div class="carousel">
+    <img src="assets/img/home/carousel/image1.jpg" alt="" />
+</div>
 <div class="home-content-wrapper aboutus">
     <div class="c-sm-7 details dark">
         <h3>ABOUT US</h3>
