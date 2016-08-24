@@ -14,7 +14,7 @@ $( document ).ready(function() {
     })
 
     var url = window.location.href;
-    if(url.contains("aboutus")) { // =====> ABOUT US <=====
+    if (url.toLowerCase().indexOf("aboutus") >= 0) { // =====> ABOUT US <=====
         // Navigate to About Us
         $('.aboutus-tabs div').on('click', function() {
             var id = $(this).data("id");
@@ -38,10 +38,10 @@ $( document ).ready(function() {
             }
         });
     }
-    else if(url.contains("services")) { // =====> SERVICES <=====
-        
+    else if(url.toLowerCase().indexOf("services") >= 0) { // =====> SERVICES <=====
+
     }
-    else if(url.contains("gallery")) { // =====> GALLERY <=====
+    else if(url.toLowerCase().indexOf("gallery") >= 0) { // =====> GALLERY <=====
         // Get Gallery Immages from DB
         var gallery_dir = "assets/img/gallery/";
         var gallery_images = [ "fruir carving b.jpg", "fruit carving.jpg" ];
