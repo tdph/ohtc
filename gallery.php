@@ -1,3 +1,5 @@
 <?php include('inc/header.php'); ?>
-<h2>GALLERY</h2>
+<div id="gallery_container">
+
+</div>
 <?php include('inc/footer.php'); ?>
