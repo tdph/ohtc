@@ -1,6 +1,62 @@
 <?php include('inc/header.php'); ?>
-<div class="carousel">
-    <img src="assets/img/home/carousel/image1.jpg" alt="" />
+<div id="home-carousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#home-carousel" data-slide-to="1"></li>
+        <li data-target="#home-carousel" data-slide-to="2"></li>
+        <li data-target="#home-carousel" data-slide-to="3"></li>
+        <li data-target="#home-carousel" data-slide-to="4"></li>
+        <li data-target="#home-carousel" data-slide-to="5"></li>
+        <li data-target="#home-carousel" data-slide-to="6"></li>
+        <li data-target="#home-carousel" data-slide-to="7"></li>
+        <li data-target="#home-carousel" data-slide-to="8"></li>
+        <li data-target="#home-carousel" data-slide-to="9"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="assets/img/home/carousel/image01.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image02.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image03.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image04.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image05.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image06.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image07.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image08.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image09.jpg" alt="..." />
+        </div>
+        <div class="item">
+            <img src="assets/img/home/carousel/image10.jpg" alt="..." />
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#home-carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#home-carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 <div class="home-content-wrapper aboutus">
     <div class="c-sm-7 details dark">

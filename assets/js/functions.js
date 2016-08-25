@@ -39,7 +39,10 @@ $( document ).ready(function() {
         });
     }
     else if(url.toLowerCase().indexOf("services") >= 0) { // =====> SERVICES <=====
-
+        $('.service_wrapper').on('click', function() {
+            $(this).find('.services_content').toggleClass('isshow');
+            $(this).find('.glyphicon').toggleClass('toggle');
+        })
     }
     else if(url.toLowerCase().indexOf("gallery") >= 0) { // =====> GALLERY <=====
         // Get Gallery Immages from DB
