@@ -47,7 +47,7 @@ $( document ).ready(function() {
     else if(url.toLowerCase().indexOf("gallery") >= 0) { // =====> GALLERY <=====
         // Get Gallery Immages from DB
         var gallery_dir = "assets/img/gallery/";
-        var gallery_images = [ "fruir carving b.jpg", "fruit carving.jpg" ];
+        var gallery_images = [ "fruit carving b.jpg", "fruit carving.jpg" ];
 
         // Load Gallery Images
         var c = 0;
