@@ -1,5 +1,5 @@
 // Remove shadow on selected page's content
-$("#gallery_container, .article_wrapper").parents('.content').css("box-shadow", "none");
+$("#gallery_container, .article_wrapper, .admin-pages").parents('.content').css("box-shadow", "none");
 $( document ).ready(function() {
     // Get started!
     // Navigate to pages
