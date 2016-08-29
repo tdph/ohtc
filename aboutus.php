@@ -116,7 +116,6 @@
 </section>
 <section class="aboutus-tab-page" id="ourfacilities">
     <div id="image_container" class="dark">
-
     </div>
 </section>
 <?php include('inc/footer.php'); ?>

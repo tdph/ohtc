@@ -1,5 +1,5 @@
 // Remove shadow on selected page's content
-$("#gallery_container, .article_wrapper, .admin-pages").parents('.content').css("box-shadow", "none");
+$("#gallery_container, .article_wrapper.dark, .admin-pages").parents('.content').css("box-shadow", "none");
 $( document ).ready(function() {
     // Get started!
     // Navigate to pages
@@ -14,7 +14,7 @@ $( document ).ready(function() {
     })
 
     var url = window.location.href;
-    if (url.toLowerCase().indexOf("aboutus") >= 0) { // =====> ABOUT US <=====
+    if (url.toLowerCase().indexOf("aboutus.php") >= 0) { // =====> ABOUT US <=====
         // Navigate to About Us
         $('.aboutus-tabs div').on('click', function() {
             var id = $(this).data("id");
@@ -58,6 +58,27 @@ $( document ).ready(function() {
             decodeURIComponent(value.substr(0, value.lastIndexOf('.'))) + "</span></div>");
             c++;
             if(c == 4) { c = 0; $(".content").append("</div>"); }
+        })
+    }
+    else if(url.toLowerCase().indexOf("admin") >= 0) {
+        $('.btn-back').on('click', function() {
+            window.location = "admin.php";
+        })
+        $('#btn-browse-carousel').on('click', function() {
+            $('#upload-carousel').trigger('click');
+        })
+        $('#btn-browse-team').on('click', function() {
+            $('#upload-team').trigger('click');
+        })
+        $('#btn-browse-facility').on('click', function() {
+            $('#upload-facility').trigger('click');
+        })
+        $('#btn-browse-news').on('click', function() {
+            $('#upload-news').trigger('click');
+        })
+        $('.btn-remove-carousel').on('click', function() {
+            var id = $(this).data("id");
+            alert($('#'+id).attr("src"));
         })
     }
 });

@@ -4,7 +4,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : "";
 $pages = array("home", "aboutus", "services", "news", "gallery");
 if(!in_array($page, $pages)) { $page = ""; }
 if($page == "") { ?>
-    <div class="dark">
+    <div class="admin-wrapper">
         <a href="?page=home"><p class="admin-pages">HOME</p></a>
         <a href="?page=aboutus"><p class="admin-pages">ABOUT US</p></a>
         <a href="?page=services"><p class="admin-pages">SERVICES</p></a>

@@ -20,12 +20,12 @@
                     <input type="search" name="search-box" placeholder="Search...">
                 </form>
                 <ul class="nav">
-                    <li id="home" class="btn btn-borderless">Home</li>
-                    <li id="aboutus" class="btn btn-borderless">About Us</li>
-                    <li id="services" class="btn btn-borderless">Services</li>
-                    <li id="gallery" class="btn btn-borderless">Gallery</li>
-                    <li id="news" class="btn btn-borderless">News</li>
-                    <li id="contactus" class="btn btn-borderless">Contact Us</li>
+                    <li id="home" class="btn btn-borderless btn-borderbottom">Home</li>
+                    <li id="aboutus" class="btn btn-borderless btn-borderbottom">About Us</li>
+                    <li id="services" class="btn btn-borderless btn-borderbottom">Services</li>
+                    <li id="gallery" class="btn btn-borderless btn-borderbottom">Gallery</li>
+                    <li id="news" class="btn btn-borderless btn-borderbottom">News</li>
+                    <li id="contactus" class="btn btn-borderless btn-borderbottom">Contact Us</li>
                 </ul>
             </div>
         </nav>
