@@ -1,6 +1,7 @@
 <?php
 require_once("./api.php");
 if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['imagepath'])) {
+	
 	$title =    $_POST['title'];
 	$description =  $_POST['description'];
 	$imagepath =  $_POST['imagepath'];
