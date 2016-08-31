@@ -11,27 +11,31 @@ interface IValidation {
 	public function Validate($str);
 }
 
+interface ICondition{
+	public function Append( );
+}
+
 class Api implements IApi {
 	//declaration
-	private $connectionString;
+	private $connection;
 
 	//constructor
 	public function __construct(IConnectionDB $conn){
-		$this->connectionString = $conn;
+		$this->connection = $conn;
 	}
 
 	/**
 	* @param string $qry
 	* @return row data
 	**/
-	
+
 	public function ExecuteReader($qry){
-		$result = mysqli_query($this->connectionString->connect(),$qry) or die("failed");
+		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
 		return $result;
 	}
 
 	public function ExecuteQuery($qry){
-		$result = mysqli_query($this->connectionString->connect(),$qry) or die("failed");
+		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
 		if($result=="1"){ echo "success"; exit();}
 		else { echo "failed"; exit(); }
 	}
@@ -48,4 +52,21 @@ class Validation implements IValidation{
 	}
 }
 
+class Limit implements ICondition{
+			private $array;
+	  	public function __construct($arr){
+				$this->array = $arr;
+			}
+			public function Append(){
+				$page = $this->array['page'];
+				$limit = $this->array['limit'];
+				$validate = new Validation();
+				$validate->Validate($this->array);
+				$strtpage = 0;
+				if(intval($page)-1>0){
+					$strtpage = (intval($page)*intval($limit))-intval($limit);
+				}
+				return " limit $strtpage,$limit;";
+		}
+}
 ?>
