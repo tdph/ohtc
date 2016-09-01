@@ -1,5 +1,11 @@
 <?php
-require_once("./config.php");
+require_once("config.php");
+
+class Vars {
+	public static $assets = "assets/";
+	public static $img = "assets/img/";
+	public static $services = "assets/img/services/";
+}
 
 interface IApi {
 	public function ExecuteReader($qry);
@@ -36,8 +42,8 @@ class Api implements IApi {
 
 	public function ExecuteQuery($qry){
 		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
-		if($result=="1"){ echo "success"; exit();}
-		else { echo "failed"; exit(); }
+		if($result=="1"){ echo json_encode(array("status"=>"success","data"=>"success")); exit();}
+		else { echo json_encode(array("status"=>"failed","data"=>"failed"));  exit(); }
 	}
 }
 
@@ -48,12 +54,12 @@ class Validation implements IValidation{
 		foreach ( $arr as $key => $value ) {
 			if($value==null || $value==""){$val.=$key.","; }
 		}
-		if($val!=""){ echo "Empty or null string ".strtoupper(substr($val,0,strlen($val)-1)); exit(); }
+		if($val!=""){   echo json_encode(array("status" => "failed", "data" =>"Empty or null string ".strtoupper(substr($val,0,strlen($val)-1))));  exit(); }
 	}
 }
 
 class Limit implements ICondition{
-			private $array;
+		private $array;
 	  	public function __construct($arr){
 				$this->array = $arr;
 			}
@@ -69,4 +75,5 @@ class Limit implements ICondition{
 				return " limit $strtpage,$limit;";
 		}
 }
+
 ?>

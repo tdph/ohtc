@@ -10,6 +10,7 @@
             <p>Copyright &copy; 2016. <a href="#">V. Culinary, Culinary and Hospitality Training Centre.</a><br />All Rights Reserved.</p>
         </footer>
         <script src="assets/js/jquery-2.1.4.min.js"></script>
+        <script src="assets/js/jquery.ajax-progress.js"></script>
         <script src="assets/js/functions.js" type="text/javascript"></script>
         <script src="assets/js/carousel.js" type="text/javascript"></script>
         <script type="text/javascript">

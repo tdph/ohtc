@@ -134,9 +134,6 @@
                     <li>Indian Condiments and Breads</li>
                     <li>Stock Management &amp; Administration</li>
                     <li>Galley Operation including Food Safety Management Plan and Safety &amp; Hygiene</li>
-
-
-
                 </ul>
             </div>
         </div>

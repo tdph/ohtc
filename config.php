@@ -7,8 +7,8 @@ interface IConnectionDB{
 class ConnectionDB implements IConnectionDB {
   var $host = 'localhost';
   var $uid = 'root';
-  var $pwd = 'argiedb';
-  var $db = 'oceanicdb';
+  var $pwd = 'root';
+  var $db = 'ohtcdb';
   var $port = '3306';
 
   public function __construct(){}

@@ -38,7 +38,7 @@ $( document ).ready(function() {
             }
         });
     }
-    else if(url.toLowerCase().indexOf("services") >= 0) { // =====> SERVICES <=====
+    else if(url.toLowerCase().indexOf("services.php") >= 0) { // =====> SERVICES <=====
         $('.service_wrapper').on('click', function() {
             $(this).find('.services_content').toggleClass('isshow');
             $(this).find('.glyphicon').toggleClass('toggle');
@@ -76,9 +76,50 @@ $( document ).ready(function() {
         $('#btn-browse-news').on('click', function() {
             $('#upload-news').trigger('click');
         })
+        $('#btn-browse-services').on('click', function() {
+            $('#upload-services').trigger('click');
+        })
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
             alert($('#'+id).attr("src"));
         })
     }
+    function _(e){return document.getElementById(e);}
+
+    $("#form_services").on('submit', function(e) {
+
+        e.preventDefault();
+        var haserror = false;
+        if(_('upload-services').files.length==0){alert("no file selected"); return;}
+        $.ajax({
+            url: "parser/services_insert.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                /// $('#loading').hide();
+                // $("#message").html(data);
+
+                 var resp = JSON.parse(data);
+                 if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
+
+                 if(resp.status=="success") { window.location  = "/admin.php?page=services";  }
+
+            },
+            error: function(data) { console.log(data); },
+            complete: function() { console.log("Completed."); },
+            progress: function(evt) {
+
+                if (evt.lengthComputable) {
+                    _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
+                }
+                else {
+                    console.log("Length not computable.");
+                }
+            }
+        });
+    });
 });
