@@ -87,13 +87,13 @@ $( document ).ready(function() {
              var val =$("#txtobj").val();
              alert(val);
 
-             return; //to prevent submit
+             return;  
         })
         $('#add-module-services').on('click', function() {
             var val =$("#txtmod").val();
             alert(val);
 
-            return; //to prevent submit
+            return;
         })
 
 
