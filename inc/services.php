@@ -10,8 +10,16 @@
       <input type="text" placeholder="Duration..." name="duration"/>
       <div class="hidden"><input type="file" id="upload-services" name="uploadServices"></div>
       <button type="button" id="btn-browse-services" name="btn-browse">BROWSE</button>
-      <button type="submit" id="btn-upload-services" name="btn-upload">SAVE</button>
-      <progress id='progressor' value="0" max='100' style=""></progress>
 
+      <input type="text" placeholder="objectives"/><button id="add-objectives-services" name="add-objectives-services" >ADD</button>
+      <table id="objectives">
+      </table>
+
+      <input type="text" placeholder="module"/><button id="add-objectives-services" name="add-objectives-module" >ADD</button>
+      <table id="module">
+      </table>
+
+      <progress id='progressor' value="0" max='100' style=""></progress>
+      <button type="submit" id="btn-upload-services" name="btn-upload">SAVE</button>
     </form>
 </div>
