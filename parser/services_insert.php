@@ -32,7 +32,9 @@ if(isset($_FILES["uploadServices"]["type"]))
                   }
                   else
                   {
-
+                      $modules = $_POST['modules'];
+                      $objectives = $_POST['objectives'];
+                      
                       $title = $_POST['title'];
                       $description = $_POST['description'];
                       $minstudent = $_POST['minstudent'];

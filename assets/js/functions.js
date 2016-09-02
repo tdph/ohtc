@@ -84,37 +84,39 @@ $( document ).ready(function() {
             alert($('#'+id).attr("src"));
         })
         $('#add-objectives-services').on('click', function() {
-             var val =$("#txtobj").val();
-             alert(val);
 
-             return;  
+             addObjective("txtobj");
         })
         $('#add-module-services').on('click', function() {
-            var val =$("#txtmod").val();
-            alert(val);
-
-            return;
+             addModule("txtmod");
         })
 
 
     }
-    function _(e){return document.getElementById(e);}
 
+
+
+
+
+
+    function _(e){return document.getElementById(e);}
     $("#form_services").on('submit', function(e) {
 
         e.preventDefault();
-
+        var frm =  new FormData(this);
+        frm.append("modules",window.modules);
+        frm.append("objectives",window.objectives);
       //  if(_('upload-services').files.length==0){alert("no file selected"); return;}
         $.ajax({
             url: "parser/services_insert.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
-            data: new FormData(this), // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            data:frm, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
             contentType: false,       // The content type used when sending data to the server.
             cache: false,             // To unable request pages to be cached
             processData:false,        // To send DOMDocument or non processed data file it is set to false
             success: function(data)   // A function to be called if request succeeds
             {
-                 alert(data);
+                  
                  var resp = JSON.parse(data);
                  if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
 
