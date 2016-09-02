@@ -89,7 +89,7 @@ $( document ).ready(function() {
     $("#form_services").on('submit', function(e) {
 
         e.preventDefault();
-        var haserror = false;
+
         if(_('upload-services').files.length==0){alert("no file selected"); return;}
         $.ajax({
             url: "parser/services_insert.php", // Url to which the request is send
@@ -100,9 +100,7 @@ $( document ).ready(function() {
             processData:false,        // To send DOMDocument or non processed data file it is set to false
             success: function(data)   // A function to be called if request succeeds
             {
-                /// $('#loading').hide();
-                // $("#message").html(data);
-
+                 alert(data);
                  var resp = JSON.parse(data);
                  if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
 
