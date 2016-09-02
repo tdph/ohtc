@@ -45,6 +45,16 @@ class Api implements IApi {
 		if($result=="1"){ echo json_encode(array("status"=>"success","data"=>"success")); exit();}
 		else { echo json_encode(array("status"=>"failed","data"=>"failed"));  exit(); }
 	}
+	public function ExecuteNonQuery($qry){
+		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
+		if($result=="1"){   }
+		else { echo json_encode(array("status"=>"failed","data"=>"failed"));  exit(); }
+	}
+	public function ExecuteLastInsertId(){
+			$result =  mysqli_query($this->connection->connect(),"select last_insert_id();");
+		  $row = mysqli_fetch_row($result);
+			return $row[0];
+	}
 }
 
 class Validation implements IValidation{

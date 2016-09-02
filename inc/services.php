@@ -23,7 +23,7 @@
               if(x != '') {
                   var i = window.objectives.length;
                   window.objectives[i] = [];
-                  window.objectives[i][0] = x;
+                  window.objectives[i][0] =  Replace(x,",","`");
 
                   _(e).value = "";
                   displayObjectives();
@@ -38,7 +38,7 @@
               if(window.objectives.length > 0) {
               for(var i=0; i < window.objectives.length; i++) {
                 var c = window.objectives[i];
-                _('objectives').innerHTML += '<tr><td width="60%">'+c[0]+'</td><td width="40%">'+'<a onclick="deleteObjective(' + i + ')" style="cursor:pointer;color:red;float:right;margin-right:5px;">X</a></td></tr>';
+                _('objectives').innerHTML += '<tr><td width="60%">'+Replace(c[0],"`",",")+'</td><td width="40%">'+'<a onclick="deleteObjective(' + i + ')" style="cursor:pointer;color:red;float:right;margin-right:5px;">X</a></td></tr>';
               }
             }
           }
@@ -66,7 +66,7 @@
               if(x != '') {
                   var i = window.modules.length;
                   window.modules[i] = [];
-                  window.modules[i][0] = x;
+                  window.modules[i][0] = Replace(x,",","`");
 
                   _(e).value = "";
                   displayModules();
@@ -78,7 +78,7 @@
               if(window.modules.length > 0) {
               for(var i=0; i < window.modules.length; i++) {
                 var c = window.modules[i];
-                _('modules').innerHTML += '<tr><td width="60%">'+c[0]+'</td><td width="40%">'+'<a onclick="deleteModule(' + i + ')" style="cursor:pointer;color:red;float:right;margin-right:5px;">X</a></td></tr>';
+                _('modules').innerHTML += '<tr><td width="60%">'+Replace(c[0],"`",",")+'</td><td width="40%">'+'<a onclick="deleteModule(' + i + ')" style="cursor:pointer;color:red;float:right;margin-right:5px;">X</a></td></tr>';
               }
             }
           }
@@ -86,6 +86,15 @@
             window.modules.splice(e,1);
             displayModules();
           }
+          function Replace(qstring,chToReplace,chByReplace){
+            var p="";
+            for(var i = 0;i<qstring.length;i++){
+              if(qstring[i]==chToReplace){ p+=chByReplace;}
+              else { p+=qstring[i];}
+            }
+            return p;
+          }
+
           //** MODULE - SERVICES
       </script>
       <input type="text" placeholder="module" id="txtmod"/>

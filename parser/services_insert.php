@@ -34,6 +34,9 @@ if(isset($_FILES["uploadServices"]["type"]))
                       $modules = $_POST['modules'];
                       $objectives = $_POST['objectives'];
 
+                      $modules = explode(",",$modules);
+                      $objectives = explode(",",$objectives);
+
                       $title = $_POST['title'];
                       $description = $_POST['description'];
                       $minstudent = $_POST['minstudent'];
@@ -57,7 +60,21 @@ if(isset($_FILES["uploadServices"]["type"]))
 
                       $con = new ConnectionDB();
                       $api = new Api($con);
-                      $api->ExecuteQuery($qry);
+                      $api->ExecuteNonQuery($qry);
+
+                      $id = $api->ExecuteLastInsertId();
+                      foreach ($modules as $key => $value) {
+                           $qry = "INSERT INTO `tblmodule`(`serviceid`,`description`)VALUES('$id','$value')";
+                           $api->ExecuteNonQuery($qry);
+                      }
+
+                      foreach ($objectives as $key => $value) {
+                           $qry = "INSERT INTO `tblobjectives`(`serviceid`,`objective`)VALUES('$id','$value')";
+                           $api->ExecuteNonQuery($qry);
+                      }
+
+                      echo json_encode(array("status"=>"success","data"=>"success"));
+                      exit();
                 }
             }
        }
