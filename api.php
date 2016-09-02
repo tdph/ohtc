@@ -47,11 +47,11 @@ class Api implements IApi {
 	}
 	public function ExecuteNonQuery($qry){
 		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
-		if($result=="1"){   }
+		if($result=="1"){ $res =  mysqli_insert_id($this->connection->connect()); return  $res;}
 		else { echo json_encode(array("status"=>"failed","data"=>"failed"));  exit(); }
 	}
 	public function ExecuteLastInsertId(){
-			$result =  mysqli_query($this->connection->connect(),"select last_insert_id();");
+			$result =  mysqli_query($this->connection->connect(),"select last_insert_id() from tblservices;");
 		  $row = mysqli_fetch_row($result);
 			return $row[0];
 	}

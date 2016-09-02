@@ -60,9 +60,9 @@ if(isset($_FILES["uploadServices"]["type"]))
 
                       $con = new ConnectionDB();
                       $api = new Api($con);
-                      $api->ExecuteNonQuery($qry);
+                      $id = $api->ExecuteNonQuery($qry);
 
-                      $id = $api->ExecuteLastInsertId();
+
                       foreach ($modules as $key => $value) {
                            $qry = "INSERT INTO `tblmodule`(`serviceid`,`description`)VALUES('$id','$value')";
                            $api->ExecuteNonQuery($qry);
