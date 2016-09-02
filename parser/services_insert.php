@@ -7,8 +7,7 @@ if(isset($_FILES["uploadServices"]["type"]))
       $temporary = explode(".", $_FILES["uploadServices"]["name"]);
       $file_extension = end($temporary);
 
-     echo json_encode(array("status"=>"as","data"=>$_FILES["uploadServices"]["type"]));
-     exit();
+
 
       if ((($_FILES["uploadServices"]["type"] == "image/png") ||
            ($_FILES["uploadServices"]["type"] == "image/jpg") ||
@@ -34,7 +33,7 @@ if(isset($_FILES["uploadServices"]["type"]))
                   {
                       $modules = $_POST['modules'];
                       $objectives = $_POST['objectives'];
-                      
+
                       $title = $_POST['title'];
                       $description = $_POST['description'];
                       $minstudent = $_POST['minstudent'];
