@@ -7,8 +7,8 @@ if(isset($_FILES["uploadServices"]["type"]))
       $temporary = explode(".", $_FILES["uploadServices"]["name"]);
       $file_extension = end($temporary);
 
-    //  echo json_encode(array("status"=>"as","data"=>$_FILES["uploadServices"]["type"]." ".$_FILES["uploadServices"]["size"]));
-    //  exit();
+     echo json_encode(array("status"=>"as","data"=>$_FILES["uploadServices"]["type"]));
+     exit();
 
       if ((($_FILES["uploadServices"]["type"] == "image/png") ||
            ($_FILES["uploadServices"]["type"] == "image/jpg") ||
@@ -67,6 +67,7 @@ if(isset($_FILES["uploadServices"]["type"]))
 
        }
 }
-echo json_encode(array("status"=>"failed","data"=>"failed"));
-exit();
+else { echo json_encode(array("status"=>"failed","data"=>"no picture selected"));
+exit(); }
+
 ?>

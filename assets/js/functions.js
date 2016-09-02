@@ -83,6 +83,20 @@ $( document ).ready(function() {
             var id = $(this).data("id");
             alert($('#'+id).attr("src"));
         })
+        $('#add-objectives-services').on('click', function() {
+             var val =$("#txtobj").val();
+             alert(val);
+
+             return; //to prevent submit
+        })
+        $('#add-module-services').on('click', function() {
+            var val =$("#txtmod").val();
+            alert(val);
+
+            return; //to prevent submit
+        })
+
+
     }
     function _(e){return document.getElementById(e);}
 
@@ -90,7 +104,7 @@ $( document ).ready(function() {
 
         e.preventDefault();
 
-        if(_('upload-services').files.length==0){alert("no file selected"); return;}
+      //  if(_('upload-services').files.length==0){alert("no file selected"); return;}
         $.ajax({
             url: "parser/services_insert.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
