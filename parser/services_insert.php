@@ -14,12 +14,14 @@ if(isset($_FILES["uploadServices"]["type"]))
     && in_array($file_extension, $validextensions)) {
         if ($_FILES["uploadServices"]["error"] > 0)
         {
-            echo "Return Code: " . $_FILES["uploadServices"]["error"] . "<br/><br/>";
+            echo json_encode(array("status"=>"failed","data"=>$_FILES["uploadServices"]["error"] ));
+            //echo "Return Code: " . $_FILES["uploadServices"]["error"] . "<br/><br/>";
         }
         else
         {
             if (file_exists(Vars::$services . $_FILES["uploadServices"]["name"])) {
-                echo $_FILES["uploadServices"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
+               echo json_encode(array("status"=>"failed","data"=>$_FILES["uploadServices"]["name"]." already exists." ));
+                //echo $_FILES["uploadServices"]["name"] . " <span id='invalid'><b>already exists.</b></span> ";
             }
             else
             {
@@ -53,7 +55,8 @@ if(isset($_FILES["uploadServices"]["type"]))
     }
     else
     {
-        echo "<span id='invalid'>***Invalid file Size or Type***<span>";
+        echo json_encode(array("status"=>"failed","data"=>"***Invalid file Size or Type***" ));
+      //  echo "<span id='invalid'>***Invalid file Size or Type***<span>";
     }
 }
 ?>
