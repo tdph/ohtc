@@ -21,7 +21,9 @@ require_once("./api.php");
 
        $con = new ConnectionDB();
        $api = new Api($con);
-       $api->ExecuteQuery($qry);
+       $res =  $api->ExecuteNonQuery($qry);
+       echo $res;
+       exit();
     }
     echo "failed";
     exit();

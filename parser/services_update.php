@@ -29,6 +29,8 @@ require_once("./api.php");
            $qry ="UPDATE `tblservices` SET `name` = '$name',`description` = '$description',`minstudents` = '$minstudents',`maxstudents` = '$maxstudents',`duration` = '$duration', `imagepath` = '$imagepath' WHERE `id` = '$id'; ";
            $con = new ConnectionDB();
            $api = new Api($con);
-           $api->ExecuteQuery($qry);
+           $res =  $api->ExecuteNonQuery($qry);
+           echo $res;
+           exit();
       }
 ?>

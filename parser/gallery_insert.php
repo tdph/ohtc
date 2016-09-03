@@ -1,7 +1,7 @@
 <?php
 require_once("./api.php");
 if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['imagepath'])) {
-	
+
 	$title =    $_POST['title'];
 	$description =  $_POST['description'];
 	$imagepath =  $_POST['imagepath'];
@@ -16,7 +16,9 @@ if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['image
 
 	$con = new ConnectionDB();
 	$api = new Api($con);
-	$api->ExecuteQuery($qry);
+	$res =  $api->ExecuteNonQuery($qry);
+	echo $res;
+	exit();
 }
 echo "failed";
 exit();

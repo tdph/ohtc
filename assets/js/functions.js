@@ -84,7 +84,6 @@ $( document ).ready(function() {
             alert($('#'+id).attr("src"));
         })
         $('#add-objectives-services').on('click', function() {
-
              addObjective("txtobj");
         })
         $('#add-module-services').on('click', function() {
@@ -106,7 +105,7 @@ $( document ).ready(function() {
         var frm =  new FormData(this);
         frm.append("modules",window.modules);
         frm.append("objectives",window.objectives);
-      //  if(_('upload-services').files.length==0){alert("no file selected"); return;}
+       //  if(_('upload-services').files.length==0){alert("no file selected"); return;}
         $.ajax({
             url: "parser/services_insert.php", // Url to which the request is send
             type: "POST",             // Type of request to be send, called as method
@@ -116,11 +115,11 @@ $( document ).ready(function() {
             processData:false,        // To send DOMDocument or non processed data file it is set to false
             success: function(data)   // A function to be called if request succeeds
             {
-                 alert(data);
+
                  var resp = JSON.parse(data);
                  if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
 
-                 if(resp.status=="success") { window.location  = "/admin.php?page=services";  }
+                 if(resp.status=="success") {  window.location  = "./admin.php?page=services";  }
 
             },
             error: function(data) { console.log(data); },

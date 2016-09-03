@@ -14,6 +14,8 @@ $qry = "DELETE FROM tblmodule".$append;
 
 $con = new ConnectionDB();
 $api = new Api($con);
-$api->ExecuteQuery($qry);
+$res =  $api->ExecuteNonQuery($qry);
+echo $res;
+exit();
 
 ?>

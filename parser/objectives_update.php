@@ -17,6 +17,8 @@ require_once("./api.php");
            $qry =" UPDATE `tblobjectives` SET `serviceid`='$serviceid',`objective` = '$objective' WHERE `id`='$id'";
            $con = new ConnectionDB();
            $api = new Api($con);
-           $api->ExecuteQuery($qry);
+           $res =  $api->ExecuteNonQuery($qry);
+           echo $res;
+           exit();
        }
 ?>

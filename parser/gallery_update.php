@@ -17,7 +17,9 @@ if(isset($_POST['title']) && isset($_POST['description']) && isset($_POST['image
 
 	$con = new ConnectionDB();
 	$api = new Api($con);
-	$result = $api->ExecuteQuery($qry);
+	$res =  $api->ExecuteNonQuery($qry);
+	echo $res;
+	exit();
 }
 echo "failed";
 exit();

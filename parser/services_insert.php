@@ -7,8 +7,6 @@ if(isset($_FILES["uploadServices"]["type"]))
       $temporary = explode(".", $_FILES["uploadServices"]["name"]);
       $file_extension = end($temporary);
 
-
-
       if ((($_FILES["uploadServices"]["type"] == "image/png") ||
            ($_FILES["uploadServices"]["type"] == "image/jpg") ||
            ($_FILES["uploadServices"]["type"] == "image/jpeg"))
@@ -60,8 +58,8 @@ if(isset($_FILES["uploadServices"]["type"]))
 
                       $con = new ConnectionDB();
                       $api = new Api($con);
-                      $id = $api->ExecuteNonQuery($qry);
-
+                      $api->ExecuteNonQuery($qry);
+                      $id = $api->ExecuteLastInsertId();
 
                       foreach ($modules as $key => $value) {
                            $qry = "INSERT INTO `tblmodule`(`serviceid`,`description`)VALUES('$id','$value')";
