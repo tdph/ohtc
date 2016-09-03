@@ -61,6 +61,46 @@ class Validation implements IValidation{
 	}
 }
 
+class ValidateUploadPicture implements IValidation{
+
+		private $directory = "";
+		public function __construct($dir){
+				$this->directory = $dir;
+		}
+		public function Validate($arr){
+
+			$validextensions = array("jpeg", "jpg", "png","JPG","JPEG","PNG");
+			$temporary = explode(".", $arr["name"]);
+			$file_extension = end($temporary);
+
+				if ((($arr["type"] == "image/png") ||
+						 ($arr["type"] == "image/jpg") ||
+						 ($arr["type"] == "image/jpeg"))
+						 && ($arr["size"] < 5000000)  //Approx. 5mb files can be uploaded.
+						 && in_array($file_extension, $validextensions) ) {
+							if ($arr["error"] > 0)
+							{
+									return json_encode(array("status"=>"failed","data"=>$arr["error"] ));
+							}
+							else
+							{
+										if (file_exists($this->directory.$arr["name"]))
+										{
+											 return json_encode(array("status"=>"failed","data"=> $arr["name"]." already exists." ));
+										}
+										else
+										{
+												return json_encode(array("status"=>"success","data"=>"success"));
+									  }
+							}
+				 }
+				 else
+				 {
+						 return json_encode(array("status"=>"failed","data"=>"***Invalid file Size or Type***" ));
+				 }
+		}
+}
+
 class Limit implements ICondition{
 		private $array;
 	  	public function __construct($arr){

@@ -89,7 +89,10 @@ $( document ).ready(function() {
         $('#add-module-services').on('click', function() {
              addModule("txtmod");
         })
+        $('#btn-upload-carousel').on('click',function(){
 
+           UploadPicForCarousel();
+        })
 
     }
 
@@ -97,6 +100,39 @@ $( document ).ready(function() {
 
 
 
+    function UploadPicForCarousel(){
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-carousel').files[0]);
+        $.ajax({
+            url: "parser/uploadpic.php", // Url to which the request is send
+            type: "POST",             // Type of request to be send, called as method
+            data:frm, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+            contentType: false,       // The content type used when sending data to the server.
+            cache: false,             // To unable request pages to be cached
+            processData:false,        // To send DOMDocument or non processed data file it is set to false
+            success: function(data)   // A function to be called if request succeeds
+            {
+                alert(data );
+                //  var resp = JSON.parse(data);
+                //  if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
+                 //
+                //  if(resp.status=="success") {  window.location  = "./admin.php?page=services";  }
+
+            },
+            error: function(data) { console.log(data); },
+            complete: function() { console.log("Completed."); },
+            progress: function(evt) {
+
+                if (evt.lengthComputable) {
+                  //  _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
+                }
+                else {
+                    console.log("Length not computable.");
+                }
+            }
+        });
+    }
 
     function _(e){return document.getElementById(e);}
     $("#form_services").on('submit', function(e) {
@@ -115,12 +151,9 @@ $( document ).ready(function() {
             processData:false,        // To send DOMDocument or non processed data file it is set to false
             success: function(data)   // A function to be called if request succeeds
             {
-
                  var resp = JSON.parse(data);
-                 if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
-
+                 if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data); }
                  if(resp.status=="success") {  window.location  = "./admin.php?page=services";  }
-
             },
             error: function(data) { console.log(data); },
             complete: function() { console.log("Completed."); },

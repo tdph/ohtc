@@ -20,3 +20,9 @@
     ?>
     </div>
 </div>
+
+<?php
+// list($width, $height) = getimagesize('C:\Users\HUG\Desktop\1.PNG');
+// echo "width: " . $width . "<br />";
+// echo "height: " .  $height;
+?>
