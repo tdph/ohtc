@@ -81,10 +81,17 @@ $( document ).ready(function() {
         })
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
-            //alert($('#'+id).attr("src"));
             var frm =  new FormData();
             frm.append("file","../"+$('#'+id).attr("src"));
             AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
+        })
+        $('.btn-remove-facility').on('click', function() {
+
+          var id = $(this).data("id");
+          var frm =  new FormData();
+          frm.append("file","../"+$('#'+id).attr("src"));
+          AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=aboutus",false);
+
         })
         $('#add-objectives-services').on('click', function() {
              addObjective("txtobj");
@@ -93,12 +100,19 @@ $( document ).ready(function() {
              addModule("txtmod");
         })
         $('#btn-upload-carousel').on('click', function(){
-            UploadPicForCarousel();
+            UploadPicFor_Carousel();
         })
+        $('#btn-upload-team').on('click', function(){
+            UploadPicFor_Team();
+        })
+        $('#btn-upload-facility').on('click', function(){
+            UploadPicFor_Facility();
+        })
+
     }
 
 
-    function AjaxUsingJquery(form,url,reloadurl,hasprogressbar){
+    function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
 
           $.ajax({
               url:url, // Url to which the request is send
@@ -109,10 +123,11 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
+                  //alert(data); return; //- debugging
 
                    var resp = JSON.parse(data);
                    if(resp.status=="failed"){
-                       if(hasprogressbar==true){ _('progressor').value  = 0;}
+                       if(hasprogressbar==true){ _(progressbarname).value  = 0;}
                        alert(resp.data);
                    }
                    if(resp.status=="success") {
@@ -126,7 +141,7 @@ $( document ).ready(function() {
 
                   if(hasprogressbar==true){
                       if (evt.lengthComputable) {
-                          _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
+                          _(progressbarname).value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
                       }
                       else {
                           console.log("Length not computable.");
@@ -137,21 +152,50 @@ $( document ).ready(function() {
     }
 
 
-    function UploadPicForCarousel(){
+    function UploadPicFor_Carousel(){
 
         var frm =  new FormData();
         frm.append("file",_('upload-carousel').files[0]);
-        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true);
+        frm.append("fixedwidth",1440);
+        frm.append("fixedheight",679);
+        frm.append("type","carousel");
+        frm.append("newname","");
+        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
+
+    }
+    function UploadPicFor_Team(){
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-team').files[0]);
+        frm.append("fixedwidth",150);
+        frm.append("fixedheight",150);
+        frm.append("type","team");
+        frm.append("newname","");
+        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorteam');
+
+    }
+    function UploadPicFor_Facility(){
+
+        if(_('facility-name').value.trim()==""){ alert("Facility name required"); return;}
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-facility').files[0]);
+        frm.append("fixedwidth",700);
+        frm.append("fixedheight",400);
+        frm.append("type","facility");
+        frm.append("newname",_('facility-name').value);
+        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorfacility');
 
     }
 
     function _(e){return document.getElementById(e);}
+
     $("#form_services").on('submit', function(e) {
 
           e.preventDefault();
           var frm =  new FormData(this);
           frm.append("modules",window.modules);
           frm.append("objectives",window.objectives);
-          AjaxUsingJquery(frm,"parser/services_insert.php","./admin.php?page=services",true);
+          AjaxUsingJquery(frm,"parser/services_insert.php","./admin.php?page=services",true,'progressor');
     });
 });

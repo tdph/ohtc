@@ -6,7 +6,10 @@
     <div class="hidden"><input type="file" id="upload-team" name="upload-team"></div>
     <button type="button" id="btn-browse-team" name="btn-browse-team">BROWSE</button>
     <button type="button" id="btn-upload-team" name="btn-upload-team">UPLOAD</button>
+    <progress id='progressorteam' value="0" max='100' style=""></progress>
 </div>
+
+
 <div class="admin-aboutus">
     <h3>Our Facilities</h3>
     <form class="facility-form" onsubmit="return false;">
@@ -14,6 +17,7 @@
         <button type="button" id="btn-browse-facility" name="btn-browse-facility">BROWSE</button>
         <input type="text" id="facility-name" name="name" value="" placeholder="Name...">
         <button type="button" id="btn-upload-facility" name="btn-upload-facility">UPLOAD</button>
+        <progress id='progressorfacility' value="0" max='100' style=""></progress>
     </form>
     <div class="facility-wrapper">
     <?php

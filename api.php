@@ -102,12 +102,16 @@ class ValidateUploadPicture implements IValidation{
 		}
 }
 class ValidatePictureDimension implements IValidation{
+		private $fxW,$fxH;
 
-		public function __construct( ){}
+		public function __construct($fixedWith,$fixedHeight){
+				$this->fxW = $fixedWith;
+				$this->fxH = $fixedHeight;
+		}
 		public function Validate($arr)//array
 		{
 				$arr =  getimagesize($arr['tmp_name']);
-				if(intval($arr[0])==1440 && intval($arr[1])==679)//validate dimension
+				if(intval($arr[0])==$this->fxW && intval($arr[1])==$this->fxH)//validate dimension
 				{
 						return json_encode(array("status"=>"success","data"=>"success"));
 				}
