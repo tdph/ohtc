@@ -81,7 +81,10 @@ $( document ).ready(function() {
         })
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
-            alert($('#'+id).attr("src"));
+            //alert($('#'+id).attr("src"));
+            var frm =  new FormData();
+            frm.append("file","../"+$('#'+id).attr("src"));
+            AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
         })
         $('#add-objectives-services').on('click', function() {
              addObjective("txtobj");
@@ -89,83 +92,66 @@ $( document ).ready(function() {
         $('#add-module-services').on('click', function() {
              addModule("txtmod");
         })
-        $('#btn-upload-carousel').on('click',function(){
-
-           UploadPicForCarousel();
+        $('#btn-upload-carousel').on('click', function(){
+            UploadPicForCarousel();
         })
-
     }
 
 
+    function AjaxUsingJquery(form,url,reloadurl,hasprogressbar){
 
+          $.ajax({
+              url:url, // Url to which the request is send
+              type: "POST",             // Type of request to be send, called as method
+              data:form, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+              contentType: false,       // The content type used when sending data to the server.
+              cache: false,             // To unable request pages to be cached
+              processData:false,        // To send DOMDocument or non processed data file it is set to false
+              success: function(data)   // A function to be called if request succeeds
+              {
+
+                   var resp = JSON.parse(data);
+                   if(resp.status=="failed"){
+                       if(hasprogressbar==true){ _('progressor').value  = 0;}
+                       alert(resp.data);
+                   }
+                   if(resp.status=="success") {
+                       alert(resp.data);
+                       window.location  = reloadurl;
+                   }
+              },
+              error: function(data) { console.log(data); },
+              complete: function() { console.log("Completed."); },
+              progress: function(evt) {
+
+                  if(hasprogressbar==true){
+                      if (evt.lengthComputable) {
+                          _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
+                      }
+                      else {
+                          console.log("Length not computable.");
+                      }
+                  }
+              }
+          });
+    }
 
 
     function UploadPicForCarousel(){
 
         var frm =  new FormData();
         frm.append("file",_('upload-carousel').files[0]);
-        $.ajax({
-            url: "parser/uploadpic.php", // Url to which the request is send
-            type: "POST",             // Type of request to be send, called as method
-            data:frm, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData:false,        // To send DOMDocument or non processed data file it is set to false
-            success: function(data)   // A function to be called if request succeeds
-            {
-                alert(data );
-                //  var resp = JSON.parse(data);
-                //  if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data);}
-                 //
-                //  if(resp.status=="success") {  window.location  = "./admin.php?page=services";  }
+        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true);
 
-            },
-            error: function(data) { console.log(data); },
-            complete: function() { console.log("Completed."); },
-            progress: function(evt) {
-
-                if (evt.lengthComputable) {
-                  //  _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
-                }
-                else {
-                    console.log("Length not computable.");
-                }
-            }
-        });
     }
 
     function _(e){return document.getElementById(e);}
     $("#form_services").on('submit', function(e) {
 
-        e.preventDefault();
-        var frm =  new FormData(this);
-        frm.append("modules",window.modules);
-        frm.append("objectives",window.objectives);
-       //  if(_('upload-services').files.length==0){alert("no file selected"); return;}
-        $.ajax({
-            url: "parser/services_insert.php", // Url to which the request is send
-            type: "POST",             // Type of request to be send, called as method
-            data:frm, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
-            contentType: false,       // The content type used when sending data to the server.
-            cache: false,             // To unable request pages to be cached
-            processData:false,        // To send DOMDocument or non processed data file it is set to false
-            success: function(data)   // A function to be called if request succeeds
-            {
-                 var resp = JSON.parse(data);
-                 if(resp.status=="failed"){ _('progressor').value  = 0; alert(resp.data); }
-                 if(resp.status=="success") {  window.location  = "./admin.php?page=services";  }
-            },
-            error: function(data) { console.log(data); },
-            complete: function() { console.log("Completed."); },
-            progress: function(evt) {
-
-                if (evt.lengthComputable) {
-                    _('progressor').value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
-                }
-                else {
-                    console.log("Length not computable.");
-                }
-            }
-        });
+          e.preventDefault();
+          var frm =  new FormData(this);
+          frm.append("modules",window.modules);
+          frm.append("objectives",window.objectives);
+          AjaxUsingJquery(frm,"parser/services_insert.php","./admin.php?page=services",true);
     });
 });

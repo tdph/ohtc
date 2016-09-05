@@ -52,7 +52,8 @@
                    $qry = "INSERT INTO `tblobjectives`(`serviceid`,`objective`)VALUES('$id','$value')";
                    $api->ExecuteNonQuery($qry);
               }
-
+              echo json_encode(array("status"=>"success","data"=>"success"));
+              exit();
         }
         echo json_encode(array("status"=>$res->status,"data"=>$res->data));
         exit();

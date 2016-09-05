@@ -55,10 +55,11 @@ class Validation implements IValidation{
 	public function Validate($arr) {
 		$val = "";
 		foreach ( $arr as $key => $value ) {
-			if($value==null || $value==""){$val.=$key.","; }
+			if($value==null || trim($value)==""){$val.=$key.","; }
 		}
 		if($val!=""){   echo json_encode(array("status" => "failed", "data" =>"Empty or null string ".strtoupper(substr($val,0,strlen($val)-1))));  exit(); }
 	}
+
 }
 
 class ValidateUploadPicture implements IValidation{
@@ -100,9 +101,21 @@ class ValidateUploadPicture implements IValidation{
 				 }
 		}
 }
+class ValidatePictureDimension implements IValidation{
 
+		public function __construct( ){}
+		public function Validate($arr)//array
+		{
+				$arr =  getimagesize($arr['tmp_name']);
+				if(intval($arr[0])==1440 && intval($arr[1])==679)//validate dimension
+				{
+						return json_encode(array("status"=>"success","data"=>"success"));
+				}
+				return json_encode(array("status"=>"failed","data"=>"Invalid Dimension"));
+		}
+}
 class Limit implements ICondition{
-		private $array;
+		  private $array;
 	  	public function __construct($arr){
 				$this->array = $arr;
 			}

@@ -6,6 +6,7 @@
     <div class="hidden"><input type="file" id="upload-carousel" name="upload-carousel"></div>
     <button type="button" id="btn-browse-carousel" name="btn-browse">BROWSE</button>
     <button type="button" id="btn-upload-carousel" name="btn-upload">UPLOAD</button>
+    <progress id='progressor' value="0" max='100' style=""></progress>
     <div class="carousel-wrapper">
     <?php
         $carouseldir = "assets/img/home/carousel/";
@@ -20,9 +21,3 @@
     ?>
     </div>
 </div>
-
-<?php
-// list($width, $height) = getimagesize('C:\Users\HUG\Desktop\1.PNG');
-// echo "width: " . $width . "<br />";
-// echo "height: " .  $height;
-?>
