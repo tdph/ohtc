@@ -7,7 +7,7 @@ interface IConnectionDB{
 class ConnectionDB implements IConnectionDB {
   var $host = 'localhost';
   var $uid = 'root';
-  var $pwd = '';
+  var $pwd = 'argiedb';
   var $db = 'ohtcdb';
   var $port = '3306';
   private $conn  = null;
@@ -17,7 +17,7 @@ class ConnectionDB implements IConnectionDB {
    * @return newly created connection to the database otherwise it will return the error
    **/
    public function CreateConnection(){
-     
+
        date_default_timezone_set("Asia/Manila");
        $this->conn =  @mysqli_connect($this->host, $this->uid, $this->pwd,$this->db, $this->port);
        if (!$this->conn) {

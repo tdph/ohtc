@@ -86,7 +86,7 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
         })
         $('.btn-remove-facility').on('click', function() {
-
+          //
           var id = $(this).data("id");
           var frm =  new FormData();
           frm.append("file","../"+$('#'+id).attr("src"));
@@ -94,7 +94,7 @@ $( document ).ready(function() {
 
         })
         $('#add-objectives-services').on('click', function() {
-             addObjective("txtobj");
+             addObjective("txtobj");d
         })
         $('#add-module-services').on('click', function() {
              addModule("txtmod");
@@ -123,7 +123,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                  //alert(data); return; //- debugging
+                     //alert(data); return; //- debugging
 
                    var resp = JSON.parse(data);
                    if(resp.status=="failed"){
