@@ -100,13 +100,16 @@ $( document ).ready(function() {
              addModule("txtmod");
         })
         $('#btn-upload-carousel').on('click', function(){
-            UploadPicFor_Carousel();
+            UploadFor_Carousel();
         })
         $('#btn-upload-team').on('click', function(){
-            UploadPicFor_Team();
+            UploadFor_Team();
         })
         $('#btn-upload-facility').on('click', function(){
-            UploadPicFor_Facility();
+            UploadFor_Facility();
+        })
+        $('#btn-upload-news').on('click', function(){
+            UploadFor_News();
         })
 
     }
@@ -152,7 +155,7 @@ $( document ).ready(function() {
     }
 
 
-    function UploadPicFor_Carousel(){
+    function UploadFor_Carousel(){
 
         var frm =  new FormData();
         frm.append("file",_('upload-carousel').files[0]);
@@ -163,7 +166,7 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
 
     }
-    function UploadPicFor_Team(){
+    function UploadFor_Team(){
 
         var frm =  new FormData();
         frm.append("file",_('upload-team').files[0]);
@@ -174,7 +177,7 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorteam');
 
     }
-    function UploadPicFor_Facility(){
+    function UploadFor_Facility(){
 
         if(_('facility-name').value.trim()==""){ alert("Facility name required"); return;}
 
@@ -188,6 +191,19 @@ $( document ).ready(function() {
 
     }
 
+    function UploadFor_News(){
+
+        if(_('news-title').value.trim()==""){ alert("Title required"); return;}
+        if(_('news-date').value.trim()==""){alert("Date required"); return;}
+        if(_('news-description').value.trim()==""){alert("Description required"); return;}
+        var frm =  new FormData();
+        frm.append("file",_('upload-news').files[0]);
+        frm.append("title",_('news-title').value);
+        frm.appen("date",_('news-date'));
+        frm.append("content",_('news-description'));
+        AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
+
+    }
     function _(e){return document.getElementById(e);}
 
     $("#form_services").on('submit', function(e) {

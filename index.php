@@ -1,52 +1,35 @@
-
 <?php include('inc/header.php'); ?>
 <div id="home-carousel" class="carousel slide" data-ride="carousel">
+    <?php
+    $dir = "assets/img/home/carousel/";
+    $filenameArray = array();
+    $handle = opendir($dir);
+    while($file = readdir($handle)) {
+        if($file !== '.' && $file !== '..'){
+            $filenameArray[] = $dir.$file;
+        }
+    }
+    ?>
     <!-- Indicators -->
     <ol class="carousel-indicators">
-        <li data-target="#home-carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#home-carousel" data-slide-to="1"></li>
-        <li data-target="#home-carousel" data-slide-to="2"></li>
-        <li data-target="#home-carousel" data-slide-to="3"></li>
-        <li data-target="#home-carousel" data-slide-to="4"></li>
-        <li data-target="#home-carousel" data-slide-to="5"></li>
-        <li data-target="#home-carousel" data-slide-to="6"></li>
-        <li data-target="#home-carousel" data-slide-to="7"></li>
-        <li data-target="#home-carousel" data-slide-to="8"></li>
-        <li data-target="#home-carousel" data-slide-to="9"></li>
+        <?php
+            foreach ($filenameArray as $key => $value) {
+                $append = ($key==0)?'class="active"':'';
+                echo '<li data-target="#home-carousel" data-slide-to="'.$key.'" '.$append.'></li>';
+            }
+        ?>
     </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="assets/img/home/carousel/image01.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image02.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image03.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image04.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image05.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image06.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image07.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image08.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image09.jpg" alt="..." />
-        </div>
-        <div class="item">
-            <img src="assets/img/home/carousel/image10.jpg" alt="..." />
-        </div>
+        <?php
+            foreach ($filenameArray as $key => $value) {
+                $append = ($key==0)?'active"':'';
+                echo '<div class="item '.$append.'">
+                    <img src="'.$value.'" alt="..." />
+                </div>';
+            }
+        ?>
     </div>
 
     <!-- Controls -->
