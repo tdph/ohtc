@@ -111,8 +111,8 @@ class ValidatePictureDimension implements IValidation{
 		public function Validate($arr)//array
 		{
 				$arr =  getimagesize($arr['tmp_name']);
-
-				if(intval($arr[0])<=$this->fxW && intval($arr[1])<=$this->fxH)//validate dimension
+			 
+				if(intval($arr[0])==$this->fxW && intval($arr[1])==$this->fxH)//validate dimension
 				{
 						return json_encode(array("status"=>"success","data"=>"success"));
 				}

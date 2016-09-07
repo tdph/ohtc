@@ -1,0 +1,26 @@
+::selection
+  background: $tc4
+
+::-moz-selection
+  background: $tc4
+
+img::selection
+  background: $tc4
+
+img::-moz-selection
+  background: $tc4
+body
+  -webkit-tap-highlight-color: $tc4
+
+@media (max-width: $sm-max)
+    ::selection
+        background: transparent
+    ::-moz-selection
+        background: transparent
+    img::selection
+      background: transparent
+
+    img::-moz-selection
+      background: transparent
+    body
+      -webkit-tap-highlight-color: transparent

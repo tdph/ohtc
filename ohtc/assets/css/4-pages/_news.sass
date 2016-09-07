@@ -1,0 +1,20 @@
+.article_wrapper
+    min-height: 200px
+    width: 100%
+    padding: 20px 50px
+    @media (max-width: $xs-max)
+        padding: 20px
+    p
+        text-align: justify
+        @extend .clearfix
+        img
+            float: left
+            width: 250px
+            max-width: 100%
+            height: auto
+            margin: 0 10px 10px 0
+
+.pagination_wrapper
+    padding: 0 50px
+    @media (max-width: $xs-max)
+        padding: 0 20px

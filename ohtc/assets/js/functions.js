@@ -156,7 +156,7 @@ $( document ).ready(function() {
 
         var frm =  new FormData();
         frm.append("file",_('upload-carousel').files[0]);
-        frm.append("fixedwidth",1140);
+        frm.append("fixedwidth",1440);
         frm.append("fixedheight",679);
         frm.append("type","carousel");
         frm.append("newname","");
