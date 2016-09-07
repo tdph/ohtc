@@ -127,24 +127,27 @@ $( document ).ready(function() {
               success: function(data)   // A function to be called if request succeeds
               {
                      //alert(data); return; //- debugging
-
-                   var resp = JSON.parse(data);
-                   if(resp.status=="failed"){
-                       if(hasprogressbar==true){ _(progressbarname).value  = 0;}
-                       alert(resp.data);
-                   }
-                   if(resp.status=="success") {
-                       alert(resp.data);
-                       window.location  = reloadurl;
-                   }
+                     var resp = JSON.parse(data);
+                     if(resp.status=="failed"){
+                         if(hasprogressbar==true){
+                             $('#'+progressbarname).css("width", 0);
+                             $('#'+progressbarname).attr("aria-valuenow", 0);
+                         }
+                         alert(resp.data);
+                     }
+                     if(resp.status=="success") {
+                         alert(resp.data);
+                         window.location  = reloadurl;
+                     }
               },
               error: function(data) { console.log(data); },
-              complete: function() { console.log("Completed."); },
+              complete: function(data) { console.log("Completed."); },
               progress: function(evt) {
-
                   if(hasprogressbar==true){
                       if (evt.lengthComputable) {
-                          _(progressbarname).value =  parseFloat(Math.ceil(evt.loaded/evt.total) * 100 );//+ '%';
+                          var prctg = parseInt(Math.ceil(evt.loaded/evt.total) * 100 ) + '%';
+                          $('#'+progressbarname).css("width", prctg);
+                          $('#'+progressbarname).attr("aria-valuenow", prctg);
                       }
                       else {
                           console.log("Length not computable.");
