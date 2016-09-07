@@ -171,13 +171,20 @@ $( document ).ready(function() {
     }
     function UploadFor_Team(){
 
+        if(_('team-name').value.trim()==""){alert("Name required"); return;}
+        if(_('team-position').value.trim()==""){alert("Position required"); return;}
+        if(_('team-description').value.trim()==""){alert("Description required"); return;}
+        if(_('upload-team').files.length==0){alert("Browse photo required"); return;}
+
         var frm =  new FormData();
         frm.append("file",_('upload-team').files[0]);
         frm.append("fixedwidth",150);
         frm.append("fixedheight",150);
-        frm.append("type","team");
-        frm.append("newname","");
-        AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorteam');
+        frm.append("name",_('team-name').value);
+        frm.append("position",_('team-position').value);
+        frm.append("description",_('team-description').value);
+
+        AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
 
     }
     function UploadFor_Facility(){
@@ -193,22 +200,24 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorfacility');
 
     }
-
     function UploadFor_News(){
+
+
 
         if(_('news-title').value.trim()==""){ alert("Title required"); return;}
         if(_('news-date').value.trim()==""){alert("Date required"); return;}
         if(_('news-description').value.trim()==""){alert("Description required"); return;}
-        if(_('upload-news').files.length==0){alert("Browse a photo");return;}
-        
+        if(_('upload-news').files.length==0){alert("Browse a photo required");return;}
+
         var frm =  new FormData();
         frm.append("file",_('upload-news').files[0]);
         frm.append("title",_('news-title').value);
-        frm.appen("date",_('news-date'));
-        frm.append("content",_('news-description'));
+        frm.append("date",_('news-date').value);
+        frm.append("content",_('news-description').value);
         AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
 
     }
+
     function _(e){return document.getElementById(e);}
 
     $("#form_services").on('submit', function(e) {

@@ -1,36 +1,45 @@
 <?php
-require_once("./api.php");
+require_once("../api.php");
 
-if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['content']) && isset($_POST['date'])) {
 
-	$validate = new ValidateUploadPicture("../".""); //constructor injection - string
+if(isset($_FILES['file'])){
+	//
+
+	$validate = new ValidateUploadPicture("../assets/img/news/"); //constructor injection - string
 	$res = $validate->Validate($_FILES['file']);   //method injection - array
 	$res = json_decode($res);  //return stdClass
 
 	  if($res->data=="success"){
 
-			$title = $_POST['title'];
-			$content = $_POST['content'];
-			$dateadded = $_POST['date'];
+		$title = $_POST['title'];
+		$content = $_POST['content'];
+		$dateadded = $_POST['date'];
 
-			$arr = array('title' => $title,
-						 'content'=>$content,
-					 	 'dateadd'=>$dateadded);
+		$arr = array('title' => $title,
+					 'content'=>$content,
+				 	 'dateadd'=>$dateadded);
 
-			$validate = new Validation();
-			$validate->Validate($arr);
+		$validate = new Validation();
+ 		$validate->Validate($arr);
 
-			$dateadded = date_format($dateadded, 'Y-m-d H:i:s');
+ 		$sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
+ 		$targetPath =  "../assets/img/news/".$_FILES['file']['name']; // Target path where file is to be stored
+ 		move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file
 
-			$qry ="INSERT INTO `tblnews`(`title`,`content`,`dateadded`)VALUES('$title','$content','$dateadded');";
+		$dateadded = $dateadded." 00:00:00";
 
-			$con = new ConnectionDB();
-			$api = new Api($con);
-			$res =  $api->ExecuteNonQuery($qry);
-			echo $res;
-			exit();
-		}
+		$qry ="INSERT INTO `tblnews`(`title`,`content`,`dateadded`)VALUES('$title','$content','$dateadded');";
+
+		$con = new ConnectionDB();
+		$api = new Api($con);
+		$res =  $api->ExecuteNonQuery($qry);
+
+		echo $res;
+		exit();
+	}
+	echo json_encode(array("status"=>$res->status,"data"=>$res->data));
+	exit();
 }
-echo "failed";
+echo json_encode(array("status"=>"failed","data"=>"failed"));
 exit();
 ?>

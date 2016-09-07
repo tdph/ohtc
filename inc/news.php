@@ -1,3 +1,4 @@
+ 
 <div class="admin-header dark">
     <h3><span class="btn-back glyphicon glyphicon-chevron-left"></span> NEWS</h3>
 </div>
@@ -7,7 +8,7 @@
         <div class="hidden"><input type="file" id="upload-news" name="upload-news"></div>
         <button type="button" id="btn-browse-news" name="btn-browse-news">BROWSE</button>
         <input type="text" id="news-title" name="title" value="" placeholder="Title...">
-        <input type="date" id="news-date" name="date" value="" placeholder="date...">
+        <input type="date" id="news-date" name="date" value="" placeholder="Date...">
         <textarea id="news-description" name="description"></textarea>
         <button type="button" id="btn-upload-news" name="btn-upload-news">UPLOAD</button>
     </form>

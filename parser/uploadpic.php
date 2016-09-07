@@ -12,7 +12,6 @@
     if(isset($_FILES['file']) && isset($_POST['fixedwidth']) && isset($_POST['fixedheight']) && isset($_POST['type']) && isset($_POST['newname'])){
 
         $arr = array("carousel"=>"../assets/img/home/carousel/",
-                     "team"=>"../assets/img/aboutus/ourteam/",
                     "facility"=>"../assets/img/aboutus/ourfacilities/");
 
         $temporary = explode(".", $_FILES["file"]["name"]);

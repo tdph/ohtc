@@ -5,6 +5,10 @@
     <h3>Our Team</h3>
     <div class="hidden"><input type="file" id="upload-team" name="upload-team"></div>
     <button type="button" id="btn-browse-team" name="btn-browse-team">BROWSE</button>
+    <input type="text" id="team-name" name="team-name"  placeholder="Name..."/>
+    <input type="text" id="team-position" name="team-position"  placeholder="Position..."/>
+    <input type="text" id="team-description" name="team-description"  placeholder="Description..."/>
+
     <button type="button" id="btn-upload-team" name="btn-upload-team">UPLOAD</button>
     <div class="progress">
         <div id="progressorteam" class="active progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">

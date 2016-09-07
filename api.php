@@ -91,7 +91,7 @@ class ValidateUploadPicture implements IValidation{
 										}
 										else
 										{
-												return json_encode(array("status"=>"success","data"=>"success"));
+											return json_encode(array("status"=>"success","data"=>"success"));
 									  }
 							}
 				 }
