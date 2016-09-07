@@ -11,13 +11,18 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['content']) 
 
 			$title = $_POST['title'];
 			$content = $_POST['content'];
+			$dateadded = $_POST['date'];
 
 			$arr = array('title' => $title,
-						 'content'=>$content);
+						 'content'=>$content,
+					 	 'dateadd'=>$dateadded);
+
 			$validate = new Validation();
 			$validate->Validate($arr);
 
-			$qry ="INSERT INTO `tblnews`(`title`,`content`)VALUES('$title','$content');";
+			$dateadded = date_format($dateadded, 'Y-m-d H:i:s');
+
+			$qry ="INSERT INTO `tblnews`(`title`,`content`,`dateadded`)VALUES('$title','$content','$dateadded');";
 
 			$con = new ConnectionDB();
 			$api = new Api($con);

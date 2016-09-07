@@ -2,10 +2,12 @@
 
     require_once("../api.php");
 
+
+
+    ini_set('max_execution_time', 300);
     ini_set('upload_max_filesize', '10M');
     ini_set('post_max_size', '10M');
     ini_set('max_input_time', 300);
-    ini_set('max_execution_time', 300);
 
     if(isset($_FILES['file']) && isset($_POST['fixedwidth']) && isset($_POST['fixedheight']) && isset($_POST['type']) && isset($_POST['newname'])){
 

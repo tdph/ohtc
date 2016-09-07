@@ -1,4 +1,7 @@
-<?php include('inc/header.php'); ?>
+<?php
+    
+     include('inc/header.php');
+ ?>
 <div id="home-carousel" class="carousel slide" data-ride="carousel">
     <?php
     $dir = "assets/img/home/carousel/";

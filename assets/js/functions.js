@@ -199,6 +199,8 @@ $( document ).ready(function() {
         if(_('news-title').value.trim()==""){ alert("Title required"); return;}
         if(_('news-date').value.trim()==""){alert("Date required"); return;}
         if(_('news-description').value.trim()==""){alert("Description required"); return;}
+        if(_('upload-news').files.length==0){alert("Browse a photo");return;}
+        
         var frm =  new FormData();
         frm.append("file",_('upload-news').files[0]);
         frm.append("title",_('news-title').value);
