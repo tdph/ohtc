@@ -15,6 +15,7 @@ $( document ).ready(function() {
 
     var url = window.location.href;
     if (url.toLowerCase().indexOf("aboutus.php") >= 0) { // =====> ABOUT US <=====
+
         // Navigate to About Us
         $('.aboutus-tabs div').on('click', function() {
             var id = $(this).data("id");
@@ -39,12 +40,15 @@ $( document ).ready(function() {
         });
     }
     else if(url.toLowerCase().indexOf("services.php") >= 0) { // =====> SERVICES <=====
+
         $('.service_wrapper').on('click', function() {
             $(this).find('.services_content').toggleClass('isshow');
             $(this).find('.glyphicon').toggleClass('toggle');
         })
     }
     else if(url.toLowerCase().indexOf("gallery") >= 0) { // =====> GALLERY <=====
+
+
         // Get Gallery Immages from DB
         var gallery_dir = "assets/img/gallery/";
         var gallery_images = [ "fruit carving b.jpg", "fruit carving.jpg" ];
@@ -59,11 +63,16 @@ $( document ).ready(function() {
             c++;
             if(c == 4) { c = 0; $(".content").append("</div>"); }
         })
+
+
+
     }
     else if(url.toLowerCase().indexOf("admin") >= 0) {
+
         $('.btn-back').on('click', function() {
             window.location = "admin.php";
         })
+
         $('#btn-browse-carousel').on('click', function() {
             $('#upload-carousel').trigger('click');
         })
@@ -79,6 +88,8 @@ $( document ).ready(function() {
         $('#btn-browse-services').on('click', function() {
             $('#upload-services').trigger('click');
         })
+
+
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
             var frm =  new FormData();
@@ -94,10 +105,10 @@ $( document ).ready(function() {
 
         })
         $('#add-objectives-services').on('click', function() {
-             addObjective("txtobj");d
+            addObjective("txtobj");d
         })
         $('#add-module-services').on('click', function() {
-             addModule("txtmod");
+            addModule("txtmod");
         })
         $('#btn-upload-carousel').on('click', function(){
             UploadFor_Carousel();
@@ -112,8 +123,14 @@ $( document ).ready(function() {
             UploadFor_News();
         })
 
-    }
 
+    }
+    $('#btn-browse-gallery').on('click', function() {
+        $('#upload-gallery').trigger('click');
+    })
+    $('#btn-upload-gallery').on('click', function(){
+        UploadFor_Gallery();
+    })
 
     function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
 
@@ -202,8 +219,6 @@ $( document ).ready(function() {
     }
     function UploadFor_News(){
 
-
-
         if(_('news-title').value.trim()==""){ alert("Title required"); return;}
         if(_('news-date').value.trim()==""){alert("Date required"); return;}
         if(_('news-description').value.trim()==""){alert("Description required"); return;}
@@ -217,7 +232,19 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
 
     }
+    function UploadFor_Gallery(){
+      
+      if(_('gallery-title').value.trim()==""){ alert("Title required"); return;}
+      if(_('gallery-description').value.trim()==""){alert("Description required"); return;}
+      if(_('upload-gallery').files.length==0){alert("Browse a photo required");return;}
 
+      var frm =  new FormData();
+      frm.append("file",_('upload-gallery').files[0]);
+      frm.append("title",_('gallery-title').value);
+      frm.append("description",_('gallery-description').value);
+      AjaxUsingJquery(frm,"parser/gallery_insert.php","./admin.php?page=gallery",true,'progressorgallery');
+
+    }
     function _(e){return document.getElementById(e);}
 
     $("#form_services").on('submit', function(e) {
