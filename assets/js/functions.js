@@ -1,6 +1,62 @@
+
+function GetSelectedPage(page=1,limit=5){
+    var form = new FormData();
+    form.append("page",page);
+    form.append("limit",limit)
+    $.ajax({
+        url:" parser/news_select.php", // Url to which the request is send
+        type: "POST",             // Type of request to be send, called as method
+        data:form, // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData:false,        // To send DOMDocument or non processed data file it is set to false
+        success: function(data)   // A function to be called if request succeeds
+        {
+             //alert(data); return; //- debugging
+            var resp = JSON.parse(data);
+            var count = Object.keys(resp).length;
+            var dir = "assets/img/news/";
+             for(var i =0;i<count;i++){
+                //console.log(resp[i].imagepath);
+                //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
+                    $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
+                      "<h5>"+resp[i].dateadded+"</h5>"+
+                      "<p>"+
+                          "<img src='"+dir+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+
+                      resp[i].content+"</p><hr></div>");
+             }
+        },
+        error: function(data) { console.log(data); },
+    });
+
+}
+
+function GetPages(){
+
+    $.ajax({
+        url:" parser/news_select.php", // Url to which the request is send
+        type: "POST",             // Type of request to be send, called as method
+        data:"", // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData:false,        // To send DOMDocument or non processed data file it is set to false
+        success: function(data)   // A function to be called if request succeeds
+        {
+          //alert(data); return; //- debugging
+            var resp = JSON.parse(data);
+            var count = Object.keys(resp).length;
+           for(var i=1;i<=count/5;i++){
+             $("#pagination").append("<li><a href='./news.php?page="+i+"'>"+i+"</a></li>");
+           }
+        },
+        error: function(data) { console.log(data); },
+    });
+}
+
 // Remove shadow on selected page's content
 $("#gallery_container, .article_wrapper.dark, .admin-pages").parents('.content').css("box-shadow", "none");
 $( document ).ready(function() {
+
     // Get started!
     // Navigate to pages
     $('ul.nav li').on('click', function() {
@@ -132,6 +188,9 @@ $( document ).ready(function() {
         UploadFor_Gallery();
     })
 
+
+
+
     function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
 
           $.ajax({
@@ -143,7 +202,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                     //alert(data); return; //- debugging
+                      //alert(data); return; //- debugging
                      var resp = JSON.parse(data);
                      if(resp.status=="failed"){
                          if(hasprogressbar==true){
@@ -233,7 +292,7 @@ $( document ).ready(function() {
 
     }
     function UploadFor_Gallery(){
-      
+
       if(_('gallery-title').value.trim()==""){ alert("Title required"); return;}
       if(_('gallery-description').value.trim()==""){alert("Description required"); return;}
       if(_('upload-gallery').files.length==0){alert("Browse a photo required");return;}
