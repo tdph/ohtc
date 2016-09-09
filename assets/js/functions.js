@@ -192,7 +192,6 @@ $( document ).ready(function() {
 
 
     function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
-
           $.ajax({
               url:url, // Url to which the request is send
               type: "POST",             // Type of request to be send, called as method
@@ -234,8 +233,7 @@ $( document ).ready(function() {
     }
 
 
-    function UploadFor_Carousel(){
-
+    function UploadFor_Carousel() {
         var frm =  new FormData();
         frm.append("file",_('upload-carousel').files[0]);
         frm.append("fixedwidth",1140);
@@ -243,15 +241,12 @@ $( document ).ready(function() {
         frm.append("type","carousel");
         frm.append("newname","");
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
-
     }
-    function UploadFor_Team(){
-
+    function UploadFor_Team() {
         if(_('team-name').value.trim()==""){alert("Name required"); return;}
         if(_('team-position').value.trim()==""){alert("Position required"); return;}
         if(_('team-description').value.trim()==""){alert("Description required"); return;}
         if(_('upload-team').files.length==0){alert("Browse photo required"); return;}
-
         var frm =  new FormData();
         frm.append("file",_('upload-team').files[0]);
         frm.append("fixedwidth",150);
@@ -259,9 +254,7 @@ $( document ).ready(function() {
         frm.append("name",_('team-name').value);
         frm.append("position",_('team-position').value);
         frm.append("description",_('team-description').value);
-
         AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
-
     }
     function UploadFor_Facility(){
 

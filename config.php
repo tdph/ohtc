@@ -7,7 +7,7 @@ interface IConnectionDB{
 class ConnectionDB implements IConnectionDB {
   var $host = 'localhost';
   var $uid = 'root';
-  var $pwd = '';
+  var $pwd = 'TDPH@mysql@0018';
   var $db = 'ohtcdb';
   var $port = '3306';
   private $conn  = null;

@@ -26,7 +26,7 @@ if(isset($_FILES['file'])){
 
 		$dateadded = $dateadded." 00:00:00";
 		$path = $_FILES['file']['name'];
-		$qry ="INSERT INTO `tblnews`(`title`,`content`,`imagepath`,`dateadded`)VALUES('".filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES)."','".filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES)."','$path','$dateadded');";
+		$qry ="INSERT INTO `tblnews`(`title`,`content`,`imagepath`,`dateadded`)VALUES('".filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES)."','".filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES)."','$targetPath','$dateadded');";
 
 		$con = new ConnectionDB();
 		$api = new Api($con);

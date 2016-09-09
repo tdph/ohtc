@@ -9,7 +9,6 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['description
 			$res = json_decode($res);  //return stdClass
 
 			if($res->data=="success"){
-
 						$title =    $_POST['title'];
 						$description =  $_POST['description'];
 
