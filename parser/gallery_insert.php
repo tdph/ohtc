@@ -23,7 +23,7 @@ if(isset($_FILES['file']) && isset($_POST['title']) && isset($_POST['description
 						$targetPath =   "../assets/img/gallery/".$_FILES['file']['name']; // Target path where file is to be stored
 						move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file
 
-						$qry ="INSERT INTO `tblgallery`(`title`,`description`,`imagepath`)VALUES('$title','$description','$targetPath');";
+						$qry ="INSERT INTO `tblgallery`(`title`,`description`,`imagepath`)VALUES('".filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES)."','".filter_var($description, FILTER_SANITIZE_MAGIC_QUOTES)."','$targetPath');";
 
 						$con = new ConnectionDB();
 						$api = new Api($con);
