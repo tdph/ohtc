@@ -1,8 +1,6 @@
 
 <?php
     require_once("../api.php");
-
-
     if(isset($_FILES['uploadServices'])){
 
         $validate = new ValidateUploadPicture("../".Vars::$services); //constructor injection - string
@@ -35,6 +33,13 @@
               $sourcePath = $_FILES['uploadServices']['tmp_name']; // Storing source path of the file in a variable
               $targetPath =  "../".Vars::$services.$_FILES['uploadServices']['name']; // Target path where file is to be stored
               move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file
+
+
+              $title =  filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES);
+              $description = filter_var($description, FILTER_SANITIZE_MAGIC_QUOTES);
+              $minstudent =  filter_var($minstudent, FILTER_SANITIZE_MAGIC_QUOTES);
+              $maxstudent =  filter_var($maxstudent, FILTER_SANITIZE_MAGIC_QUOTES);
+              $duration =  filter_var($duration, FILTER_SANITIZE_MAGIC_QUOTES);
 
               $qry ="INSERT INTO `tblservices`(`name`,`description`,`minstudents`,`maxstudents`,`duration`,`imagepath`) VALUES('$title','$description','$minstudent','$maxstudent','$duration','$targetPath')";
 
