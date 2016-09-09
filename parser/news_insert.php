@@ -1,7 +1,5 @@
 <?php
 require_once("../api.php");
-
-
 if(isset($_FILES['file'])){
 	//
 
@@ -27,8 +25,8 @@ if(isset($_FILES['file'])){
  		move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file
 
 		$dateadded = $dateadded." 00:00:00";
-
-		$qry ="INSERT INTO `tblnews`(`title`,`content`,`dateadded`)VALUES('$title','$content','$dateadded');";
+		$path = $_FILES['file']['name'];
+		$qry ="INSERT INTO `tblnews`(`title`,`content`,`imagepath`,`dateadded`)VALUES('".filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES)."','".filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES)."','$path','$dateadded');";
 
 		$con = new ConnectionDB();
 		$api = new Api($con);
