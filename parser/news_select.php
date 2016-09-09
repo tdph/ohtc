@@ -11,7 +11,7 @@
 		$append = $var->Append();
 
 	}
-	$qry = "SELECT `id`,`title`,`content`,`dateadded`,`imagepath` FROM tblnews".$append;
+	$qry = "SELECT `id`,`title`,`content`,`dateadded`,`imagepath` FROM tblnews ORDER BY `dateadded` DESC ".$append;
 	$con = new ConnectionDB();
 	$api = new Api($con);
 	$result = $api->ExecuteReader($qry);

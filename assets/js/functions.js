@@ -16,14 +16,12 @@ function GetSelectedPage(page=1,limit=5){
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
             var dir = "assets/img/news/";
-             for(var i =0;i<count;i++){
+            for(var i =0;i<count;i++) {
                 //console.log(resp[i].imagepath);
                 //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
-                    $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
-                      "<h5>"+resp[i].dateadded+"</h5>"+
-                      "<p>"+
-                          "<img src='"+dir+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+
-                      resp[i].content+"</p><hr></div>");
+                $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
+                "<h5>"+resp[i].dateadded+"</h5>"+
+                "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
              }
         },
         error: function(data) { console.log(data); },
@@ -32,7 +30,6 @@ function GetSelectedPage(page=1,limit=5){
 }
 
 function GetPages(){
-
     $.ajax({
         url:" parser/news_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -42,12 +39,74 @@ function GetPages(){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-          //alert(data); return; //- debugging
+            //alert(data); return; //- debugging
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
-           for(var i=1;i<=count/5;i++){
-             $("#pagination").append("<li><a href='./news.php?page="+i+"'>"+i+"</a></li>");
-           }
+            for(var i=1;i<=count/5;i++){
+                $("#pagination").append("<li><a href='./news.php?page="+i+"'>"+i+"</a></li>");
+            }
+        },
+        error: function(data) { console.log(data); },
+    });
+}
+
+function getOurTeam() {
+    $.ajax({
+        url:" parser/ourteam_select.php", // Url to which the request is send
+        type: "POST",             // Type of request to be send, called as method
+        data:"", // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData:false,        // To send DOMDocument or non processed data file it is set to false
+        success: function(data)   // A function to be called if request succeeds
+        {
+            var resp = JSON.parse(data);
+            var count = Object.keys(resp).length;
+            var cnt = 0;
+            var ourteam = "";
+            for(var i = 0; i < count; i++) {
+                cnt++;
+                var team = "";
+                if(cnt == 1) { team = '<div class="ot_wrapper">'; }
+                team += '<div class="c-xs-6 c-sm-3">' +
+                    '<img src="'+resp[i].imagepath+'" alt="tuason" />' +
+                    '<div class="details">' +
+                        '<h4>'+resp[i].name+'</h4>' +
+                        '<h5>'+resp[i].position+'</h5>' +
+                        '<p>'+resp[i].description+'</p>' +
+                    '</div>' +
+                '</div>';
+                if(cnt == 4) { team += '</div>'; cnt = 0; }
+                ourteam += team;
+            }
+            $('#ourteam').html(ourteam);
+        },
+        error: function(data) { console.log(data); },
+    });
+}
+
+function getGallery() {
+    $.ajax({
+        url:" parser/gallery_select.php", // Url to which the request is send
+        type: "POST",             // Type of request to be send, called as method
+        data:"", // Data sent to server, a set of key/value pairs (i.e. form fields and values)
+        contentType: false,       // The content type used when sending data to the server.
+        cache: false,             // To unable request pages to be cached
+        processData:false,        // To send DOMDocument or non processed data file it is set to false
+        success: function(data)   // A function to be called if request succeeds
+        {
+            var resp = JSON.parse(data);
+            var count = Object.keys(resp).length;
+            var x = 0;
+            var c = 0;
+            var ourteam = "";
+            for(var i = 0; i < count; i++) {
+                if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
+                $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'><img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                c++;
+                if(c == 4) { c = 0; $(".content").append("</div>"); }
+            }
+            $('#ourteam').html(ourteam);
         },
         error: function(data) { console.log(data); },
     });
@@ -56,7 +115,6 @@ function GetPages(){
 // Remove shadow on selected page's content
 $("#gallery_container, .article_wrapper.dark, .admin-pages").parents('.content').css("box-shadow", "none");
 $( document ).ready(function() {
-
     // Get started!
     // Navigate to pages
     $('ul.nav li').on('click', function() {
@@ -71,13 +129,13 @@ $( document ).ready(function() {
 
     var url = window.location.href;
     if (url.toLowerCase().indexOf("aboutus.php") >= 0) { // =====> ABOUT US <=====
-
         // Navigate to About Us
         $('.aboutus-tabs div').on('click', function() {
             var id = $(this).data("id");
             $('.aboutus-tab-page').fadeOut(200).delay(200);
             $('#'+id).fadeIn(200)
         })
+        getOurTeam();
         // Load Images to Our Facilities
         var dir = "assets/img/aboutus/ourfacilities/";
         $.ajax({
@@ -102,26 +160,9 @@ $( document ).ready(function() {
             $(this).find('.glyphicon').toggleClass('toggle');
         })
     }
-    else if(url.toLowerCase().indexOf("gallery") >= 0) { // =====> GALLERY <=====
-
-
-        // Get Gallery Immages from DB
-        var gallery_dir = "assets/img/gallery/";
-        var gallery_images = [ "fruit carving b.jpg", "fruit carving.jpg" ];
-
+    else if(url.toLowerCase().indexOf("gallery.php") >= 0) { // =====> GALLERY <=====
         // Load Gallery Images
-        var c = 0;
-        var x = 0;
-        $.each(gallery_images, function(key, value) {
-            if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-            $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'><img src='" + gallery_dir + value + "'><span class='image-title'>" +
-            decodeURIComponent(value.substr(0, value.lastIndexOf('.'))) + "</span></div>");
-            c++;
-            if(c == 4) { c = 0; $(".content").append("</div>"); }
-        })
-
-
-
+        getGallery();
     }
     else if(url.toLowerCase().indexOf("admin") >= 0) {
 

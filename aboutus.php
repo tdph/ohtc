@@ -53,66 +53,6 @@
     </div>
 </section>
 <section class="aboutus-tab-page dark" id="ourteam">
-    <div class="ot_wrapper">
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/tuason.jpg" alt="tuason" />
-            <div class="details">
-                <h4>Jose Marie Tuason</h4>
-                <h5>Operations Manager</h5>
-                <p>Chef Joey is a hospitality expert with 20 years of shipboard experience.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/alquisada.jpg" alt="alquisada" />
-            <div class="details">
-                <h4>Edgar Alquisada</h4>
-                <h5>Catering Manager</h5>
-                <p>Sir Edgar is a Hotel and Restaurant expert with 30 years of shipboard experience.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/manalac.jpg" alt="manalac" />
-            <div class="details">
-                <h4>Jaime Generalia Manalac</h4>
-                <h5>Head Trainer for Housekeeping and Restaurant</h5>
-                <p>A very experienced trainer with more than 30 years of shipboard experience.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/garrido.jpg" alt="garrido" />
-            <div class="details">
-                <h4>Adelisa F.  Garrido-Lontoc</h4>
-                <h5>Head Trainer for Nutritional Education</h5>
-                <p>Mam Lisa is a Registered Nutritionist-Dietitian, Diabetes Educator.</p>
-            </div>
-        </div>
-    </div>
-    <div class="ot_wrapper">
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/encarnacion.jpg" alt="encarnacion" />
-            <div class="details">
-                <h4>Marlon Encarnacion</h4>
-                <h5>Head Culinary Instructor</h5>
-                <p>Chef Marlon is a culinary expert with more than 15 years of shipboard experience.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/bastillo.jpg" alt="bastillo" />
-            <div class="details">
-                <h4>Cornelio Bastillo</h4>
-                <h5>Chef the Cuisine and Supervisor for E-learning Programs</h5>
-                <p>Chef Jolas is a catering professional with more than 25 Years’ experience as Executive Chef and Camp Boss on international trading vessels and remote areas.</p>
-            </div>
-        </div>
-        <div class="c-xs-6 c-sm-3">
-            <img src="assets/img/aboutus/ourteam/villanueva.jpg" alt="villanueva" />
-            <div class="details">
-                <h4>Ramir Villanueva</h4>
-                <h5>Training Officer for Catering Management and Reporting Procedures</h5>
-                <p>Ramir is a true professional with more than 20 years of shipboard experience.</p>
-            </div>
-        </div>
-    </div>
 </section>
 <section class="aboutus-tab-page" id="ourfacilities">
     <div id="image_container" class="dark">
