@@ -3116,7 +3116,7 @@ hr {
   position: relative;
 }
 
-.gallery_wrapper .image_wrapper:hover span {
+.gallery_wrapper .image_wrapper:hover .image-title {
   top: 0px;
 }
 
@@ -3141,7 +3141,7 @@ hr {
   }
 }
 
-.gallery_wrapper .image_wrapper span {
+.gallery_wrapper .image_wrapper .image-title {
   position: absolute;
   top: -50px;
   left: 15px;

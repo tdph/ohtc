@@ -85,7 +85,7 @@ function getOurTeam() {
     });
 }
 
-function getGallery() {
+function getGallery(admin = false) {
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -102,7 +102,9 @@ function getGallery() {
             var ourteam = "";
             for(var i = 0; i < count; i++) {
                 if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'><img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
+                //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
+                "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
                 c++;
                 if(c == 4) { c = 0; $(".content").append("</div>"); }
             }
@@ -194,12 +196,18 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
         })
         $('.btn-remove-facility').on('click', function() {
-          //
-          var id = $(this).data("id");
-          var frm =  new FormData();
-          frm.append("file","../"+$('#'+id).attr("src"));
-          AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=aboutus",false);
-
+            var id = $(this).data("id");
+            var frm =  new FormData();
+            frm.append("file","../"+$('#'+id).attr("src"));
+            AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=aboutus",false);
+        })
+        $('.btn-remove-gallery').on('click', function() {
+            var id = $(this).data("id");
+            var imgsrc = $('#gallery'+id).attr("src");
+            var frm =  new FormData();
+            frm.append("id", id);
+            frm.append("imgsrc", imgsrc);
+            AjaxUsingJquery(frm,"parser/gallery_delete.php","./admin.php?page=gallery",false);
         })
         $('#add-objectives-services').on('click', function() {
             addObjective("txtobj");d

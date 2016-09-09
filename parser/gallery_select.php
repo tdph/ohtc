@@ -7,7 +7,7 @@
 		$var = new Limit($arr);
 		$append = $var->Append();
 	}
-	$qry = "SELECT `id`,`title`,`description`,`imagepath`,`dateadded` FROM tblgallery".$append;
+	$qry = "SELECT `id`,`title`,`description`,`imagepath`,`dateadded` FROM tblgallery ORDER BY `dateadded` DESC ".$append;
 	$con = new ConnectionDB();
 	$api = new Api($con);
 	$result = $api->ExecuteReader($qry);
