@@ -42,8 +42,8 @@ function GetPages(){
             //alert(data); return; //- debugging
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
-            for(var i=1;i<=count/5;i++){
-                $("#pagination").append("<li><a href='./news.php?page="+i+"'>"+i+"</a></li>");
+            for(var i=0;i<count/5;i++){
+                $("#pagination").append("<li><a href='./news.php?page="+(i+1)+"'>"+(i+1)+"</a></li>");
             }
         },
         error: function(data) { console.log(data); },
