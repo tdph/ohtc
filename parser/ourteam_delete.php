@@ -1,5 +1,5 @@
 <?php
-require_once("./api.php");
+require_once("../api.php");
 
 $append=';';
 
@@ -9,12 +9,14 @@ if(isset($_POST['id'])) {
    $validate = new Validation();
    $validate->Validate($arr);
    $append = " WHERE `id`=".$id.";";
+   $img = isset($_POST['imgsrc']) ? $_POST['imgsrc'] : "";
 }
 $qry = "DELETE FROM tblourteam".$append;
 
 $con = new ConnectionDB();
 $api = new Api($con);
 $res =  $api->ExecuteNonQuery($qry);
+if(file_exists($img)) { unlink($img);   }
 echo $res;
 exit();
 

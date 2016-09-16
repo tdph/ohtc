@@ -14,6 +14,31 @@
         <div id="progressorteam" class="active progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">
         </div>
     </div>
+    <div>
+      <?php
+
+      require_once("api.php");
+      $qry = "SELECT `id`,`name`,`position`,`description`,`imagepath`,`dateadded` FROM `tblourteam`;";
+      $con = new ConnectionDB();
+      $api = new Api($con);
+      $result = $api->ExecuteReader($qry);
+      $c = 0;
+      $cnt = 0;
+      while($row = mysqli_fetch_assoc($result)) {
+          $cnt++;
+          if($c == 0) { ?> <div class="ourteam_wrapper"> <?php } ?>
+          <div class="image_wrapper c-sm-6 c-md-3" id="<?php echo $row['id']; ?>">
+              <span data-id="<?php echo $row["id"]; ?>" class="btn-remove-ourteam glyphicon glyphicon-remove" style="cursor:pointer;"></span>
+              <img  id="ourteam<?php echo $row['id']; ?>" src="<?php  echo substr($row['imagepath'],3);  ?>" border="0" />
+              <span clas="label-default">Name: <?php  echo $row["name"]; ?></span>
+              <span clas="label-default">Position: <?php echo $row["position"]; ?></span>
+              <span clas="label-default">Description: <?php echo  $row["description"]; ?></span>
+          </div>
+          <?php $c++;
+          if($c == 4 || $cnt == mysqli_num_rows($result)) { $c = 0; ?></div><?php }
+      }
+      ?>
+    </div>
 </div>
 
 

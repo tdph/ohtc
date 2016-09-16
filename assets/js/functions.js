@@ -12,16 +12,18 @@ function GetSelectedPage(page=1,limit=5){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-             //alert(data); return; //- debugging
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var dir = "assets/img/news/";
-            for(var i =0;i<count;i++) {
-                //console.log(resp[i].imagepath);
-                //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
-                $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
-                "<h5>"+resp[i].dateadded+"</h5>"+
-                "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
+             if(data!=""){
+                 //alert(data); return; //- debugging
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                var dir = "assets/img/news/";
+                for(var i =0;i<count;i++) {
+                    //console.log(resp[i].imagepath);
+                    //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
+                    $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
+                    "<h5>"+resp[i].dateadded+"</h5>"+
+                    "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
+                 }
              }
         },
         error: function(data) { console.log(data); },
@@ -39,11 +41,13 @@ function GetPages(){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            //alert(data); return; //- debugging
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            for(var i=0;i<count/5;i++){
-                $("#pagination").append("<li><a href='./news.php?page="+(i+1)+"'>"+(i+1)+"</a></li>");
+            if(data!=""){
+                //alert(data); return; //- debugging
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                for(var i=0;i<count/5;i++){
+                    $("#pagination").append("<li><a href='./news.php?page="+(i+1)+"'>"+(i+1)+"</a></li>");
+                }
             }
         },
         error: function(data) { console.log(data); },
@@ -51,6 +55,7 @@ function GetPages(){
 }
 
 function getOurTeam() {
+
     $.ajax({
         url:" parser/ourteam_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -60,26 +65,28 @@ function getOurTeam() {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var cnt = 0;
-            var ourteam = "";
-            for(var i = 0; i < count; i++) {
-                cnt++;
-                var team = "";
-                if(cnt == 1) { team = '<div class="ot_wrapper">'; }
-                team += '<div class="c-xs-6 c-sm-3">' +
-                    '<img src="'+resp[i].imagepath+'" alt="tuason" />' +
-                    '<div class="details">' +
-                        '<h4>'+resp[i].name+'</h4>' +
-                        '<h5>'+resp[i].position+'</h5>' +
-                        '<p>'+resp[i].description+'</p>' +
-                    '</div>' +
-                '</div>';
-                if(cnt == 4) { team += '</div>'; cnt = 0; }
-                ourteam += team;
-            }
-            $('#ourteam').html(ourteam);
+            if(data!=""){
+                  var resp = JSON.parse(data);
+                  var count = Object.keys(resp).length;
+                  var cnt = 0;
+                  var ourteam = "";
+                  for(var i = 0; i < count; i++) {
+                      cnt++;
+                      var team = "";
+                      if(cnt == 1) { team = '<div class="ot_wrapper">'; }
+                      team += '<div class="c-xs-6 c-sm-3">' +
+                          '<img src="'+resp[i].imagepath+'" alt="tuason" />' +
+                          '<div class="details">' +
+                              '<h4>'+resp[i].name+'</h4>' +
+                              '<h5>'+resp[i].position+'</h5>' +
+                              '<p>'+resp[i].description+'</p>' +
+                          '</div>' +
+                      '</div>';
+                      if(cnt == 4) { team += '</div>'; cnt = 0; }
+                      ourteam += team;
+                  }
+                  $('#ourteam').html(ourteam);
+              }
         },
         error: function(data) { console.log(data); },
     });
@@ -95,20 +102,22 @@ function getGallery(admin = false) {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var x = 0;
-            var c = 0;
-            var ourteam = "";
-            for(var i = 0; i < count; i++) {
-                if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
-                //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
-                "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
-                c++;
-                if(c == 4) { c = 0; $(".content").append("</div>"); }
-            }
-            $('#ourteam').html(ourteam);
+            if(data!=""){
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                var x = 0;
+                var c = 0;
+                var ourteam = "";
+                for(var i = 0; i < count; i++) {
+                    if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
+                    $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
+                    //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
+                    "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                    c++;
+                    if(c == 4) { c = 0; $(".content").append("</div>"); }
+                }
+                $('#ourteam').html(ourteam);
+             }
         },
         error: function(data) { console.log(data); },
     });
@@ -188,7 +197,14 @@ $( document ).ready(function() {
             $('#upload-services').trigger('click');
         })
 
+        $('.btn-remove-ourteam').on('click',function(){
+              var id = $(this).data("id");
+              var frm =  new FormData();
+              frm.append("id", id);
+              frm.append("imgsrc","../"+$('#ourteam'+id).attr("src"));
 
+              AjaxUsingJquery(frm,"parser/ourteam_delete.php","./admin.php?page=aboutus",false);
+        })
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
             var frm =  new FormData();
@@ -196,6 +212,7 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
         })
         $('.btn-remove-facility').on('click', function() {
+
             var id = $(this).data("id");
             var frm =  new FormData();
             frm.append("file","../"+$('#'+id).attr("src"));
@@ -250,7 +267,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                      //alert(data); return; //- debugging
+                    //alert(data); return; //- debugging
                      var resp = JSON.parse(data);
                      if(resp.status=="failed"){
                          if(hasprogressbar==true){
