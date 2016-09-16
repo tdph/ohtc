@@ -1,4 +1,6 @@
-
+function edit(id){
+  window.location = './admin.php?page=aboutus&edit=ourteam&id='+id;
+}
 function GetSelectedPage(page=1,limit=5){
     var form = new FormData();
     form.append("page",page);
@@ -13,7 +15,7 @@ function GetSelectedPage(page=1,limit=5){
         success: function(data)   // A function to be called if request succeeds
         {
              if(data!=""){
-                 //alert(data); return; //- debugging
+                  alert(data); return; //- debugging
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
                 var dir = "assets/img/news/";
@@ -53,7 +55,16 @@ function GetPages(){
         error: function(data) { console.log(data); },
     });
 }
+function readURL(input,output) {
 
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+output).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function getOurTeam() {
 
     $.ajax({
@@ -197,6 +208,18 @@ $( document ).ready(function() {
             $('#upload-services').trigger('click');
         })
 
+        $('#btn-update-team').on('click',function(){
+            var id = _("btn-update-team").value;
+            UploadFor_Team(true,id);
+        })
+
+        // $('#btn_ourteam_edit').on('click',function(){
+        //     var id = _(this).value;
+        //     window.location = './admin.php?page=aboutus&edit=ourteam&id='+id;
+        // })
+        $('#btn-cancel-team').on('click',function(){
+              window.location = './admin.php?page=aboutus';
+        })
         $('.btn-remove-ourteam').on('click',function(){
               var id = $(this).data("id");
               var frm =  new FormData();
@@ -267,7 +290,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                    //alert(data); return; //- debugging
+                   alert(data); return; //- debugging
                      var resp = JSON.parse(data);
                      if(resp.status=="failed"){
                          if(hasprogressbar==true){
@@ -308,7 +331,7 @@ $( document ).ready(function() {
         frm.append("newname","");
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
     }
-    function UploadFor_Team() {
+    function UploadFor_Team(isupdate=false,id=-1) {
         if(_('team-name').value.trim()==""){alert("Name required"); return;}
         if(_('team-position').value.trim()==""){alert("Position required"); return;}
         if(_('team-description').value.trim()==""){alert("Description required"); return;}
@@ -320,7 +343,12 @@ $( document ).ready(function() {
         frm.append("name",_('team-name').value);
         frm.append("position",_('team-position').value);
         frm.append("description",_('team-description').value);
-        AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
+
+        if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
+        if(isupdate==true && id!==-1){
+          frm.append("id",id);
+          AjaxUsingJquery(frm,"parser/ourteam_update.php","./admin.php?page=aboutus",true,'progressorteam');
+        }
     }
     function UploadFor_Facility(){
 
