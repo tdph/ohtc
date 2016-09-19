@@ -20,7 +20,6 @@
             $desc=$row["description"];
             $btn = '  <button type="button" id="btn-update-team" name="btn-update-team" value="'.$row['id'].'">UPDATE</button>
               <button type="button" id="btn-cancel-team" name="btn-cancel-team" value="'.$row['id'].'">CANCEL</button>';
-
       }
   }
 ?>
