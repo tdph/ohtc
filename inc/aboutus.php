@@ -18,8 +18,8 @@
             $name=$row["name"];
             $pos=$row["position"];
             $desc=$row["description"];
-            $btn = '  <button type="button" id="btn-update-team" name="btn-update-team" value="<?php echo $id; ?>">UPDATE</button>
-              <button type="button" id="btn-cancel-team" name="btn-cancel-team" value="<?php echo $id; ?>">CANCEL</button>';
+            $btn = '  <button type="button" id="btn-update-team" name="btn-update-team" value="'.$row['id'].'">UPDATE</button>
+              <button type="button" id="btn-cancel-team" name="btn-cancel-team" value="'.$row['id'].'">CANCEL</button>';
 
       }
   }
@@ -37,9 +37,7 @@
     <input type="text" id="team-position" name="team-position"  placeholder="Position..." value="<?php echo $pos; ?> "/>
     <input type="text" id="team-description" name="team-description"  placeholder="Description..." value="<?php echo $desc; ?>"/>
 
-
     <?php echo $btn; ?>
-
 
     <div class="progress">
         <div id="progressorteam" class="active progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">

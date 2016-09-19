@@ -15,7 +15,7 @@ function GetSelectedPage(page=1,limit=5){
         success: function(data)   // A function to be called if request succeeds
         {
              if(data!=""){
-                  alert(data); return; //- debugging
+                alert(data); return; //- debugging
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
                 var dir = "assets/img/news/";
@@ -250,7 +250,7 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/gallery_delete.php","./admin.php?page=gallery",false);
         })
         $('#add-objectives-services').on('click', function() {
-            addObjective("txtobj");d
+            addObjective("txtobj");
         })
         $('#add-module-services').on('click', function() {
             addModule("txtmod");
@@ -290,7 +290,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                   alert(data); return; //- debugging
+                     //alert(data); return; //- debugging
                      var resp = JSON.parse(data);
                      if(resp.status=="failed"){
                          if(hasprogressbar==true){
@@ -332,10 +332,12 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
     }
     function UploadFor_Team(isupdate=false,id=-1) {
+
         if(_('team-name').value.trim()==""){alert("Name required"); return;}
         if(_('team-position').value.trim()==""){alert("Position required"); return;}
         if(_('team-description').value.trim()==""){alert("Description required"); return;}
-        if(_('upload-team').files.length==0){alert("Browse photo required"); return;}
+        if(_('imgteam').src=="" && _('upload-team').files.length==0){ alert("Browse photo required"); return; }
+
         var frm =  new FormData();
         frm.append("file",_('upload-team').files[0]);
         frm.append("fixedwidth",150);
@@ -345,9 +347,12 @@ $( document ).ready(function() {
         frm.append("description",_('team-description').value);
 
         if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
-        if(isupdate==true && id!==-1){
-          frm.append("id",id);
-          AjaxUsingJquery(frm,"parser/ourteam_update.php","./admin.php?page=aboutus",true,'progressorteam');
+        if(isupdate==true && id!=-1){
+
+           frm.append("id",id);
+           frm.append("pictureupdate",(_('imgteam').src!="" && _('upload-team').files.length==0)?false:true);
+           AjaxUsingJquery(frm,"parser/ourteam_update.php","./admin.php?page=aboutus",true,'progressorteam');
+           
         }
     }
     function UploadFor_Facility(){
