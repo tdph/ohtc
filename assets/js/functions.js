@@ -4,6 +4,9 @@ function edit(id){
 function editGallery(id){
   window.location = './admin.php?page=gallery&edit=gallery&id='+id;
 }
+function editNews(id){
+  window.location = './admin.php?page=news&edit=news&id='+id;
+}
 function GetSelectedPage(page=1,limit=5){
     var form = new FormData();
     form.append("page",page);
@@ -18,7 +21,7 @@ function GetSelectedPage(page=1,limit=5){
         success: function(data)   // A function to be called if request succeeds
         {
              if(data!=""){
-                alert(data); return; //- debugging
+                //alert(data); return; //- debugging
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
                 var dir = "assets/img/news/";
@@ -107,6 +110,7 @@ function getOurTeam() {
 }
 
 function getGallery(admin = false) {
+
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -221,12 +225,32 @@ $( document ).ready(function() {
             UploadFor_Gallery(true,id);
         })
 
+        $('#btn-update-news').on('click',function(){
+            var id = _("btn-update-news").value;
+            UploadFor_News(true,id);
+        })
+
+
+        $('#btn-cancel-news').on('click',function(){
+              window.location = './admin.php?page=news';
+        })
+
         $('#btn-cancel-gallery').on('click',function(){
               window.location = './admin.php?page=gallery';
         })
         $('#btn-cancel-team').on('click',function(){
               window.location = './admin.php?page=aboutus';
         })
+
+        $('.btn-remove-news').on('click',function(){
+
+              var id = $(this).data("id");
+              var frm =  new FormData();
+              frm.append("id", id);
+              frm.append("imgsrc","../"+$('#news'+id).attr("src"));
+              AjaxUsingJquery(frm,"parser/news_delete.php","./admin.php?page=news",false);
+        })
+
         $('.btn-remove-ourteam').on('click',function(){
               var id = $(this).data("id");
               var frm =  new FormData();
@@ -378,9 +402,27 @@ $( document ).ready(function() {
             frm.append("pictureupdate",(_('galleryimg').src!="" && _('upload-gallery').files.length==0)?false:true);
             AjaxUsingJquery(frm,"parser/gallery_update.php","./admin.php?page=gallery",true,'progressorgallery');
         }
-
     }
+    function UploadFor_News(isupdate=false,id=-1){
 
+        if(_('news-title').value.trim()==""){ alert("Title required"); return;}
+        if(_('news-date').value.trim()==""){alert("Date required"); return;}
+        if(_('news-description').value.trim()==""){alert("Description required"); return;}
+        if(_('newsimg').src!='' && _('upload-news').files.length==0){alert("Browse a photo required");return;}
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-news').files[0]);
+        frm.append("title",_('news-title').value);
+        frm.append("date",_('news-date').value);
+        frm.append("content",_('news-description').value);
+
+        if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
+        if(isupdate==true && id!=-1){
+            frm.append("id",id);
+            frm.append("pictureupdate",(_('newsimg').src!="" && _('upload-news').files.length==0)?false:true);
+            AjaxUsingJquery(frm,"parser/news_update.php","./admin.php?page=news",false,'');
+        }
+    }
     function UploadFor_Facility(){
 
         if(_('facility-name').value.trim()==""){ alert("Facility name required"); return;}
@@ -394,21 +436,7 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorfacility');
 
     }
-    function UploadFor_News(){
 
-        if(_('news-title').value.trim()==""){ alert("Title required"); return;}
-        if(_('news-date').value.trim()==""){alert("Date required"); return;}
-        if(_('news-description').value.trim()==""){alert("Description required"); return;}
-        if(_('upload-news').files.length==0){alert("Browse a photo required");return;}
-
-        var frm =  new FormData();
-        frm.append("file",_('upload-news').files[0]);
-        frm.append("title",_('news-title').value);
-        frm.append("date",_('news-date').value);
-        frm.append("content",_('news-description').value);
-        AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
-
-    }
 
     function _(e){return document.getElementById(e);}
 

@@ -30,6 +30,9 @@
 							move_uploaded_file($sourcePath,$targetPath); // Moving Uploaded file
 							$append = ",`imagepath`='".$targetPath."'";
 				}
+				
+				$title = filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES);
+				$description = filter_var($description, FILTER_SANITIZE_MAGIC_QUOTES);
 
 				$qry ="UPDATE `tblgallery` SET `title` = '$title', `description` = '$description' $append  WHERE `id` = '$id';";
 
