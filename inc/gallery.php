@@ -16,7 +16,7 @@
     <div id="gallery_container-admin">
         <?php
         require_once("api.php");
-        $qry = "SELECT `id`,`title`,`description`,`imagepath`,`dateadded` FROM tblgallery".$append;
+        $qry = "SELECT `id`,`title`,`description`,`imagepath`,`dateadded` FROM tblgallery";
         $con = new ConnectionDB();
         $api = new Api($con);
         $result = $api->ExecuteReader($qry);
