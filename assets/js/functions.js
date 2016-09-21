@@ -7,9 +7,9 @@ function editGallery(id){
 function editNews(id){
   window.location = './admin.php?page=news&edit=news&id='+id;
 }
-function GetSelectedPage(page,limit){
-    page = page == "undefined" ? 1 : page;
-    limit = limit == "undefined" ? 5 : limit;
+function GetSelectedPage(page, limit){
+    page = page !== undefined ? page : 1;
+    limit = limit !== undefined ? limit : 5;
     var form = new FormData();
     form.append("page",page);
     form.append("limit",limit);
@@ -22,28 +22,17 @@ function GetSelectedPage(page,limit){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            //alert(data); return; //- debugging
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var dir = "assets/img/news/";
-            for(var i =0;i<count;i++) {
-                $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
-                "<h5>"+resp[i].dateadded+"</h5>"+
-                "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
-            }
-             if(data!=""){
+            if(data!="") {
                 //alert(data); return; //- debugging
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
                 var dir = "assets/img/news/";
                 for(var i =0;i<count;i++) {
-                    //console.log(resp[i].imagepath);
-                    //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
                     $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
                     "<h5>"+resp[i].dateadded+"</h5>"+
                     "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
-                 }
-             }
+                }
+            }
         },
         error: function(data) { console.log(data); },
     });
@@ -120,7 +109,7 @@ function getOurTeam() {
 }
 
 function getGallery(admin) {
-    admin = admin == "undefined" ? false : admin;
+    admin = admin !== undefined ? admin : false;
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -130,20 +119,6 @@ function getGallery(admin) {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var x = 0;
-            var c = 0;
-            var ourteam = "";
-            for(var i = 0; i < count; i++) {
-                if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                $("#gc"+x).append("<a href='" + resp[i].imagepath + "' data-lightbox='" + resp[i].title + "' data-title='" + resp[i].title + "'><div class='image_wrapper c-sm-6 c-md-3'>" +
-                //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
-                "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div></a>");
-                c++;
-                if(c == 4) { c = 0; $(".content").append("</div>"); }
-            }
-            $('#ourteam').html(ourteam);
             if(data!=""){
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
@@ -152,9 +127,9 @@ function getGallery(admin) {
                 var ourteam = "";
                 for(var i = 0; i < count; i++) {
                     if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                    $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
+                    $("#gc"+x).append("<a href='" + resp[i].imagepath + "' data-lightbox='" + resp[i].title + "' data-title='" + resp[i].title + "'><div class='image_wrapper c-sm-6 c-md-3'>" +
                     //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
-                    "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                    "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div></a>");
                     c++;
                     if(c == 4) { c = 0; $(".content").append("</div>"); }
                 }
@@ -329,7 +304,7 @@ $( document ).ready(function() {
     $('#btn-upload-gallery').on('click', function(){
         UploadFor_Gallery();
     })
-    
+
     function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
           $.ajax({
               url:url, // Url to which the request is send
@@ -381,8 +356,9 @@ $( document ).ready(function() {
         frm.append("newname","");
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
     }
-    function UploadFor_Team(isupdate=false,id=-1) {
-
+    function UploadFor_Team(isupdate,id) {
+        isupdate = isupdate !== undefined ? isupdate : false;
+        id = id !== undefined ? id : -1;
         if(_('team-name').value.trim()==""){alert("Name required"); return;}
         if(_('team-position').value.trim()==""){alert("Position required"); return;}
         if(_('team-description').value.trim()==""){alert("Description required"); return;}
@@ -406,8 +382,9 @@ $( document ).ready(function() {
         }
     }
 
-    function UploadFor_Gallery(isupdate=false,id=-1){
-
+    function UploadFor_Gallery(isupdate,id){
+        isupdate = isupdate !== undefined ? isupdate : false;
+        id = id !== undefined ? id : -1;
         if(_('gallery-title').value.trim()==""){ alert("Title required"); return;}
         if(_('gallery-description').value.trim()==""){alert("Description required"); return;}
         if(_('galleryimg').src=="" && _('upload-gallery').files.length==0){alert("Browse a photo required");return;}
@@ -424,8 +401,9 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/gallery_update.php","./admin.php?page=gallery",true,'progressorgallery');
         }
     }
-    function UploadFor_News(isupdate=false,id=-1){
-
+    function UploadFor_News(isupdate,id){
+        isupdate = isupdate !== undefined ? isupdate : false;
+        id = id !== undefined ? id : -1;
         if(_('news-title').value.trim()==""){ alert("Title required"); return;}
         if(_('news-date').value.trim()==""){alert("Date required"); return;}
         if(_('news-description').value.trim()==""){alert("Description required"); return;}
