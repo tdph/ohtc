@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-function GetSelectedPage(page,limit){
-    page = page == "undefined" ? 1 : page;
-    limit = limit == "undefined" ? 5 : limit;
-=======
 function edit(id){
   window.location = './admin.php?page=aboutus&edit=ourteam&id='+id;
 }
@@ -12,8 +7,9 @@ function editGallery(id){
 function editNews(id){
   window.location = './admin.php?page=news&edit=news&id='+id;
 }
-function GetSelectedPage(page=1,limit=5){
->>>>>>> origin/master
+function GetSelectedPage(page,limit){
+    page = page == "undefined" ? 1 : page;
+    limit = limit == "undefined" ? 5 : limit;
     var form = new FormData();
     form.append("page",page);
     form.append("limit",limit);
@@ -26,7 +22,6 @@ function GetSelectedPage(page=1,limit=5){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-<<<<<<< HEAD
             //alert(data); return; //- debugging
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
@@ -36,7 +31,6 @@ function GetSelectedPage(page=1,limit=5){
                 "<h5>"+resp[i].dateadded+"</h5>"+
                 "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
             }
-=======
              if(data!=""){
                 //alert(data); return; //- debugging
                 var resp = JSON.parse(data);
@@ -50,7 +44,6 @@ function GetSelectedPage(page=1,limit=5){
                     "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
                  }
              }
->>>>>>> origin/master
         },
         error: function(data) { console.log(data); },
     });
@@ -126,13 +119,8 @@ function getOurTeam() {
     });
 }
 
-<<<<<<< HEAD
 function getGallery(admin) {
     admin = admin == "undefined" ? false : admin;
-=======
-function getGallery(admin = false) {
-
->>>>>>> origin/master
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -142,7 +130,6 @@ function getGallery(admin = false) {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-<<<<<<< HEAD
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
             var x = 0;
@@ -157,7 +144,6 @@ function getGallery(admin = false) {
                 if(c == 4) { c = 0; $(".content").append("</div>"); }
             }
             $('#ourteam').html(ourteam);
-=======
             if(data!=""){
                 var resp = JSON.parse(data);
                 var count = Object.keys(resp).length;
@@ -174,7 +160,6 @@ function getGallery(admin = false) {
                 }
                 $('#ourteam').html(ourteam);
              }
->>>>>>> origin/master
         },
         error: function(data) { console.log(data); },
     });
@@ -344,10 +329,7 @@ $( document ).ready(function() {
     $('#btn-upload-gallery').on('click', function(){
         UploadFor_Gallery();
     })
-
-
-
-
+    
     function AjaxUsingJquery(form,url,reloadurl,hasprogressbar,progressbarname){
           $.ajax({
               url:url, // Url to which the request is send
