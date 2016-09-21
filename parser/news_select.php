@@ -17,7 +17,8 @@
 	$result = $api->ExecuteReader($qry);
 	$arr = array();
 	while($row = mysqli_fetch_row($result)){
-		$arr[] = array("id"=>$row[0],"title"=>$row[1],"content"=>$row[2],"dateadded"=>$row[3],"imagepath"=>$row[4]);
+		$now = new DateTime($row[3]);  
+		$arr[] = array("id"=>$row[0],"title"=>$row[1],"content"=>$row[2],"dateadded"=>$now->format('jS F Y'),"imagepath"=>$row[4]);
 	}
 	echo json_encode($arr);
 ?>

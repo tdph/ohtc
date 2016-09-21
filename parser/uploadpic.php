@@ -15,7 +15,7 @@
                     "facility"=>"../assets/img/aboutus/ourfacilities/");
 
         $temporary = explode(".", $_FILES["file"]["name"]);
-		$file_extension = end($temporary);
+	    	$file_extension = end($temporary);
         $_FILES['file']['name'] = (($_POST['newname']=="")? $_FILES['file']['name']:$_POST['newname'].".".$file_extension);
 
         $validate = new ValidateUploadPicture($arr[$_POST['type']]); //pass the directory where the picture will be saved

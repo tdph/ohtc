@@ -19,7 +19,7 @@ if(isset($_FILES['file']) && isset($_POST['name']) && isset($_POST['position']) 
            $validate = new Validation();
            $validate->Validate($arr);
 
-           $imagepath = "../assets/img/aboutus/ourteam/".$_POST['name'].$_POST['position'].".".$file_extension;
+           $imagepath = "../assets/img/aboutus/ourteam/".trim($_POST['name']).trim($_POST['position']).".".$file_extension;
            $sourcePath = $_FILES['file']['tmp_name']; // Storing source path of the file in a variable
            $targetPath =  $imagepath; // Target path where file is to be stored
 
@@ -34,7 +34,7 @@ if(isset($_FILES['file']) && isset($_POST['name']) && isset($_POST['position']) 
            exit();
         }
         echo json_encode(array("status"=>$res->status,"data"=>$res->data));
-    	exit();
+       	exit();
     }
     echo json_encode(array("status"=>"failed","data"=>"failed"));
     exit();

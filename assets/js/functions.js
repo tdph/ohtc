@@ -1,6 +1,19 @@
+<<<<<<< HEAD
 function GetSelectedPage(page,limit){
     page = page == "undefined" ? 1 : page;
     limit = limit == "undefined" ? 5 : limit;
+=======
+function edit(id){
+  window.location = './admin.php?page=aboutus&edit=ourteam&id='+id;
+}
+function editGallery(id){
+  window.location = './admin.php?page=gallery&edit=gallery&id='+id;
+}
+function editNews(id){
+  window.location = './admin.php?page=news&edit=news&id='+id;
+}
+function GetSelectedPage(page=1,limit=5){
+>>>>>>> origin/master
     var form = new FormData();
     form.append("page",page);
     form.append("limit",limit);
@@ -13,6 +26,7 @@ function GetSelectedPage(page,limit){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
+<<<<<<< HEAD
             //alert(data); return; //- debugging
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
@@ -22,6 +36,21 @@ function GetSelectedPage(page,limit){
                 "<h5>"+resp[i].dateadded+"</h5>"+
                 "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
             }
+=======
+             if(data!=""){
+                //alert(data); return; //- debugging
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                var dir = "assets/img/news/";
+                for(var i =0;i<count;i++) {
+                    //console.log(resp[i].imagepath);
+                    //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
+                    $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
+                    "<h5>"+resp[i].dateadded+"</h5>"+
+                    "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
+                 }
+             }
+>>>>>>> origin/master
         },
         error: function(data) { console.log(data); },
     });
@@ -37,18 +66,30 @@ function GetPages(){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            //alert(data); return; //- debugging
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            for(var i=0;i<count/5;i++){
-                $("#pagination").append("<li><a href='./news.php?page="+(i+1)+"'>"+(i+1)+"</a></li>");
+            if(data!=""){
+                //alert(data); return; //- debugging
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                for(var i=0;i<count/5;i++){
+                    $("#pagination").append("<li><a href='./news.php?page="+(i+1)+"'>"+(i+1)+"</a></li>");
+                }
             }
         },
         error: function(data) { console.log(data); },
     });
 }
+function readURL(input,output) {
 
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#'+output).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 function getOurTeam() {
+
     $.ajax({
         url:" parser/ourteam_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -58,33 +99,40 @@ function getOurTeam() {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-            var resp = JSON.parse(data);
-            var count = Object.keys(resp).length;
-            var cnt = 0;
-            var ourteam = "";
-            for(var i = 0; i < count; i++) {
-                cnt++;
-                var team = "";
-                if(cnt == 1) { team = '<div class="ot_wrapper">'; }
-                team += '<div class="c-xs-6 c-sm-3">' +
-                    '<img src="'+resp[i].imagepath+'" alt="tuason" />' +
-                    '<div class="details">' +
-                        '<h4>'+resp[i].name+'</h4>' +
-                        '<h5>'+resp[i].position+'</h5>' +
-                        '<p>'+resp[i].description+'</p>' +
-                    '</div>' +
-                '</div>';
-                if(cnt == 4) { team += '</div>'; cnt = 0; }
-                ourteam += team;
-            }
-            $('#ourteam').html(ourteam);
+            if(data!=""){
+                  var resp = JSON.parse(data);
+                  var count = Object.keys(resp).length;
+                  var cnt = 0;
+                  var ourteam = "";
+                  for(var i = 0; i < count; i++) {
+                      cnt++;
+                      var team = "";
+                      if(cnt == 1) { team = '<div class="ot_wrapper">'; }
+                      team += '<div class="c-xs-6 c-sm-3">' +
+                          '<img src="'+resp[i].imagepath+'" alt="tuason" />' +
+                          '<div class="details">' +
+                              '<h4>'+resp[i].name+'</h4>' +
+                              '<h5>'+resp[i].position+'</h5>' +
+                              '<p>'+resp[i].description+'</p>' +
+                          '</div>' +
+                      '</div>';
+                      if(cnt == 4) { team += '</div>'; cnt = 0; }
+                      ourteam += team;
+                  }
+                  $('#ourteam').html(ourteam);
+              }
         },
         error: function(data) { console.log(data); },
     });
 }
 
+<<<<<<< HEAD
 function getGallery(admin) {
     admin = admin == "undefined" ? false : admin;
+=======
+function getGallery(admin = false) {
+
+>>>>>>> origin/master
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -94,6 +142,7 @@ function getGallery(admin) {
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
+<<<<<<< HEAD
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
             var x = 0;
@@ -108,6 +157,24 @@ function getGallery(admin) {
                 if(c == 4) { c = 0; $(".content").append("</div>"); }
             }
             $('#ourteam').html(ourteam);
+=======
+            if(data!=""){
+                var resp = JSON.parse(data);
+                var count = Object.keys(resp).length;
+                var x = 0;
+                var c = 0;
+                var ourteam = "";
+                for(var i = 0; i < count; i++) {
+                    if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
+                    $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
+                    //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
+                    "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                    c++;
+                    if(c == 4) { c = 0; $(".content").append("</div>"); }
+                }
+                $('#ourteam').html(ourteam);
+             }
+>>>>>>> origin/master
         },
         error: function(data) { console.log(data); },
     });
@@ -187,7 +254,50 @@ $( document ).ready(function() {
             $('#upload-services').trigger('click');
         })
 
+        $('#btn-update-team').on('click',function(){
+            var id = _("btn-update-team").value;
+            UploadFor_Team(true,id);
+        })
 
+        $('#btn-update-gallery').on('click',function(){
+            var id = _("btn-update-gallery").value;
+            UploadFor_Gallery(true,id);
+        })
+
+        $('#btn-update-news').on('click',function(){
+            var id = _("btn-update-news").value;
+            UploadFor_News(true,id);
+        })
+
+
+        $('#btn-cancel-news').on('click',function(){
+              window.location = './admin.php?page=news';
+        })
+
+        $('#btn-cancel-gallery').on('click',function(){
+              window.location = './admin.php?page=gallery';
+        })
+        $('#btn-cancel-team').on('click',function(){
+              window.location = './admin.php?page=aboutus';
+        })
+
+        $('.btn-remove-news').on('click',function(){
+
+              var id = $(this).data("id");
+              var frm =  new FormData();
+              frm.append("id", id);
+              frm.append("imgsrc","../"+$('#news'+id).attr("src"));
+              AjaxUsingJquery(frm,"parser/news_delete.php","./admin.php?page=news",false);
+        })
+
+        $('.btn-remove-ourteam').on('click',function(){
+              var id = $(this).data("id");
+              var frm =  new FormData();
+              frm.append("id", id);
+              frm.append("imgsrc","../"+$('#ourteam'+id).attr("src"));
+
+              AjaxUsingJquery(frm,"parser/ourteam_delete.php","./admin.php?page=aboutus",false);
+        })
         $('.btn-remove-carousel').on('click', function() {
             var id = $(this).data("id");
             var frm =  new FormData();
@@ -195,6 +305,7 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/removepic.php","./admin.php?page=home",false);
         })
         $('.btn-remove-facility').on('click', function() {
+
             var id = $(this).data("id");
             var frm =  new FormData();
             frm.append("file","../"+$('#'+id).attr("src"));
@@ -209,7 +320,7 @@ $( document ).ready(function() {
             AjaxUsingJquery(frm,"parser/gallery_delete.php","./admin.php?page=gallery",false);
         })
         $('#add-objectives-services').on('click', function() {
-            addObjective("txtobj");d
+            addObjective("txtobj");
         })
         $('#add-module-services').on('click', function() {
             addModule("txtmod");
@@ -226,8 +337,6 @@ $( document ).ready(function() {
         $('#btn-upload-news').on('click', function(){
             UploadFor_News();
         })
-
-
     }
     $('#btn-browse-gallery').on('click', function() {
         $('#upload-gallery').trigger('click');
@@ -249,7 +358,7 @@ $( document ).ready(function() {
               processData:false,        // To send DOMDocument or non processed data file it is set to false
               success: function(data)   // A function to be called if request succeeds
               {
-                      //alert(data); return; //- debugging
+                    // alert(data); return; //- debugging
                      var resp = JSON.parse(data);
                      if(resp.status=="failed"){
                          if(hasprogressbar==true){
@@ -290,11 +399,13 @@ $( document ).ready(function() {
         frm.append("newname","");
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=home",true,'progressor');
     }
-    function UploadFor_Team() {
+    function UploadFor_Team(isupdate=false,id=-1) {
+
         if(_('team-name').value.trim()==""){alert("Name required"); return;}
         if(_('team-position').value.trim()==""){alert("Position required"); return;}
         if(_('team-description').value.trim()==""){alert("Description required"); return;}
-        if(_('upload-team').files.length==0){alert("Browse photo required"); return;}
+        if(_('imgteam').src=="" && _('upload-team').files.length==0){ alert("Browse photo required"); return; }
+
         var frm =  new FormData();
         frm.append("file",_('upload-team').files[0]);
         frm.append("fixedwidth",150);
@@ -302,7 +413,54 @@ $( document ).ready(function() {
         frm.append("name",_('team-name').value);
         frm.append("position",_('team-position').value);
         frm.append("description",_('team-description').value);
-        AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
+
+        if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/ourteam_insert.php","./admin.php?page=aboutus",true,'progressorteam');
+        if(isupdate==true && id!=-1){
+
+           frm.append("id",id);
+           frm.append("pictureupdate",(_('imgteam').src!="" && _('upload-team').files.length==0)?false:true);
+           AjaxUsingJquery(frm,"parser/ourteam_update.php","./admin.php?page=aboutus",true,'progressorteam');
+
+        }
+    }
+
+    function UploadFor_Gallery(isupdate=false,id=-1){
+
+        if(_('gallery-title').value.trim()==""){ alert("Title required"); return;}
+        if(_('gallery-description').value.trim()==""){alert("Description required"); return;}
+        if(_('galleryimg').src=="" && _('upload-gallery').files.length==0){alert("Browse a photo required");return;}
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-gallery').files[0]);
+        frm.append("title",_('gallery-title').value);
+        frm.append("description",_('gallery-description').value);
+
+        if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/gallery_insert.php","./admin.php?page=gallery",true,'progressorgallery');
+        if(isupdate==true && id!=-1){
+            frm.append("id",id);
+            frm.append("pictureupdate",(_('galleryimg').src!="" && _('upload-gallery').files.length==0)?false:true);
+            AjaxUsingJquery(frm,"parser/gallery_update.php","./admin.php?page=gallery",true,'progressorgallery');
+        }
+    }
+    function UploadFor_News(isupdate=false,id=-1){
+
+        if(_('news-title').value.trim()==""){ alert("Title required"); return;}
+        if(_('news-date').value.trim()==""){alert("Date required"); return;}
+        if(_('news-description').value.trim()==""){alert("Description required"); return;}
+        if(_('newsimg').src!='' && _('upload-news').files.length==0){alert("Browse a photo required");return;}
+
+        var frm =  new FormData();
+        frm.append("file",_('upload-news').files[0]);
+        frm.append("title",_('news-title').value);
+        frm.append("date",_('news-date').value);
+        frm.append("content",_('news-description').value);
+
+        if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
+        if(isupdate==true && id!=-1){
+            frm.append("id",id);
+            frm.append("pictureupdate",(_('newsimg').src!="" && _('upload-news').files.length==0)?false:true);
+            AjaxUsingJquery(frm,"parser/news_update.php","./admin.php?page=news",false,'');
+        }
     }
     function UploadFor_Facility(){
 
@@ -317,34 +475,8 @@ $( document ).ready(function() {
         AjaxUsingJquery(frm,"parser/uploadpic.php","./admin.php?page=aboutus",true,'progressorfacility');
 
     }
-    function UploadFor_News(){
 
-        if(_('news-title').value.trim()==""){ alert("Title required"); return;}
-        if(_('news-date').value.trim()==""){alert("Date required"); return;}
-        if(_('news-description').value.trim()==""){alert("Description required"); return;}
-        if(_('upload-news').files.length==0){alert("Browse a photo required");return;}
 
-        var frm =  new FormData();
-        frm.append("file",_('upload-news').files[0]);
-        frm.append("title",_('news-title').value);
-        frm.append("date",_('news-date').value);
-        frm.append("content",_('news-description').value);
-        AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
-
-    }
-    function UploadFor_Gallery(){
-
-      if(_('gallery-title').value.trim()==""){ alert("Title required"); return;}
-      if(_('gallery-description').value.trim()==""){alert("Description required"); return;}
-      if(_('upload-gallery').files.length==0){alert("Browse a photo required");return;}
-
-      var frm =  new FormData();
-      frm.append("file",_('upload-gallery').files[0]);
-      frm.append("title",_('gallery-title').value);
-      frm.append("description",_('gallery-description').value);
-      AjaxUsingJquery(frm,"parser/gallery_insert.php","./admin.php?page=gallery",true,'progressorgallery');
-
-    }
     function _(e){return document.getElementById(e);}
 
     $("#form_services").on('submit', function(e) {
