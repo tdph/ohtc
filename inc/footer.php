@@ -7,12 +7,13 @@
                 <a href="https://www.instagram.com/oceanichtc/" target="_blank"><img src="assets/img/social-instagram1.svg" alt="" class="instagram"></a>
                 <a href="https://twitter.com/theoceanichtc" target="_blank"><img src="assets/img/social-twitter1.svg" alt="" class="twitter"></a>
             </div>
-            <p>Copyright &copy; 2016. <a href="#">V. Culinary, Culinary and Hospitality Training Centre.</a><br />All Rights Reserved.</p>
+            <p>Copyright &copy; 2016. <a href="#">Oceanic Hospitality and Training Centre.</a><br />All Rights Reserved.</p>
         </footer>
-        <script src="assets/js/jquery-2.1.4.min.js"></script>
-        <script src="assets/js/jquery.ajax-progress.js"></script>
+        <script src="assets/js/jquery.min.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.ajax-progress.js" type="text/javascript"></script>
         <script src="assets/js/functions.js" type="text/javascript"></script>
         <script src="assets/js/carousel.js" type="text/javascript"></script>
+        <script src="assets/js/lightbox.min.js" type="text/javascript"></script>
         <script type="text/javascript">
             $('.carousel').carousel({
                 interval: 3000

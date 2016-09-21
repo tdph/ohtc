@@ -26,7 +26,7 @@
     <div class="carousel-inner" role="listbox">
         <?php
             foreach ($filenameArray as $key => $value) {
-                $append = ($key==0)?'active"':'';
+                $append = ($key==0)?'active':'';
                 echo '<div class="item '.$append.'">
                     <img src="'.$value.'" alt="..." />
                 </div>';
@@ -55,7 +55,7 @@
 <div class="home-content-wrapper services">
     <div class="c-sm-7 details dark">
         <h3>SERVICES</h3>
-        <h4>We offer presently 48 different training programs. Examples include:</h4>
+        <h4>We offer presently a wide selection of training programs. Examples include:</h4>
         <ul>
             <li>Culinary Skills Development for Chief Cooks</li>
             <li>Gallery Administration</li>

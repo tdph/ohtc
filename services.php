@@ -3,7 +3,7 @@
     <div class="c-sm-7">
         <h3>Service</h3>
         <p>The choice of courses, the highly qualified instructors, the latest technology, we at Oceanic Hospitality Training Centre provide our trainees with the finest ingredients for success. We aim for our trainees to become the crème de la crème on the field of the culinary and Hospitality Industry.
-        Enroll now from our list of courses. Welcome aboard! </p>
+        Enroll now in one of our listed courses. Welcome aboard! </p>
     </div>
     <div class="c-sm-5">
     </div>

@@ -2,9 +2,11 @@
 <div class="cus_wrapper dark" id="cus_details">
     <div class="c-sm-7" >
         <h3>We are at</h3>
-        <p>Aseana Two Bldg., Bradco Avenue, Aseana City, <br /> Paranaque City, 1702 Metro Manila, Philippines</p>
+        <p>Aseana Two Bldg., Bradco Avenue, Aseana City, <br />Paranaque City, 1702 Metro Manila, Philippines</p>
         <h3>Call us at</h3>
-        <p>+63 (02) 858-9838</p>
+        <a href="tel:028589892"><p>+63 (02) 858-9892</p></a>
+        <h3>Email us at</h3>
+        <a href="mailto:culinary@oceaniccatering.com"><p>culinary@oceaniccatering.com</p></a>
     </div>
     <div class="c-sm-5" id="image">
     </div>

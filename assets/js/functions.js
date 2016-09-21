@@ -1,8 +1,9 @@
-
-function GetSelectedPage(page=1,limit=5){
+function GetSelectedPage(page,limit){
+    page = page == "undefined" ? 1 : page;
+    limit = limit == "undefined" ? 5 : limit;
     var form = new FormData();
     form.append("page",page);
-    form.append("limit",limit)
+    form.append("limit",limit);
     $.ajax({
         url:" parser/news_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -12,21 +13,18 @@ function GetSelectedPage(page=1,limit=5){
         processData:false,        // To send DOMDocument or non processed data file it is set to false
         success: function(data)   // A function to be called if request succeeds
         {
-             //alert(data); return; //- debugging
+            //alert(data); return; //- debugging
             var resp = JSON.parse(data);
             var count = Object.keys(resp).length;
             var dir = "assets/img/news/";
             for(var i =0;i<count;i++) {
-                //console.log(resp[i].imagepath);
-                //if(resp[i].imagepath.match(/\.(jpe?g|png|gif)$/)) {
                 $("#enca").append("<div class='article_wrapper dark' id='"+resp[i].id+"'><h3>"+resp[i].title+"</h3>" +
                 "<h5>"+resp[i].dateadded+"</h5>"+
                 "<p><img src='"+resp[i].imagepath+"' alt='news'"+resp[i].id+" />"+resp[i].content+"</p><hr></div>");
-             }
+            }
         },
         error: function(data) { console.log(data); },
     });
-
 }
 
 function GetPages(){
@@ -85,7 +83,8 @@ function getOurTeam() {
     });
 }
 
-function getGallery(admin = false) {
+function getGallery(admin) {
+    admin = admin == "undefined" ? false : admin;
     $.ajax({
         url:" parser/gallery_select.php", // Url to which the request is send
         type: "POST",             // Type of request to be send, called as method
@@ -102,9 +101,9 @@ function getGallery(admin = false) {
             var ourteam = "";
             for(var i = 0; i < count; i++) {
                 if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                $("#gc"+x).append("<div class='image_wrapper c-sm-6 c-md-3'>" +
+                $("#gc"+x).append("<a href='" + resp[i].imagepath + "' data-lightbox='" + resp[i].title + "' data-title='" + resp[i].title + "'><div class='image_wrapper c-sm-6 c-md-3'>" +
                 //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
-                "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div>");
+                "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div></a>");
                 c++;
                 if(c == 4) { c = 0; $(".content").append("</div>"); }
             }
