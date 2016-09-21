@@ -43,7 +43,7 @@ class Api implements IApi {
 	public function ExecuteNonQuery($qry){
 		$result = mysqli_query($this->connection->connect(),$qry) or die("failed");
 		if($result===TRUE){ return json_encode(array("status"=>"success","data"=>"success")); }
-		else { echo $qry; json_encode(array("status"=>"failed","data"=>"failed")); exit(); }
+		else { echo json_encode(array("status"=>"failed","data"=>"failed")); exit(); }
 	}
 	public function ExecuteLastInsertId(){
 			return mysqli_insert_id($this->connection->connect()) ;
