@@ -6,11 +6,13 @@
 				$content = $_POST['content'];
 				$dateadded = $_POST['date'];
 				$id = $_POST['id'];
+				$markasfeautured = $_POST['markasfeautured'];
 
 				$arr = array('title' => $title,
 					'content'=>$content,
 					'dateadd'=>$dateadded,
-					'id'=>$id);
+					'id'=>$id,
+				   'markasfeautured'=>$markasfeautured);
 
 				$validate = new Validation();
 				$validate->Validate($arr);
@@ -37,10 +39,17 @@
 				$content = filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES);
 				$title = filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES);
 
-				$qry ="UPDATE tblnews SET `title`='$title', `content`='$content',`dateadded`='$dateadded' WHERE `id`='$id';";
-
 				$con = new ConnectionDB();
 				$api = new Api($con);
+
+				if(intval($markasfeautured)==1){
+					$qry = "UPDATE `tblnews` SET `isfeatured`='0' WHERE `id`>0";
+					$api->ExecuteNonQuery($qry);
+				}
+
+				$qry ="UPDATE tblnews SET `title`='$title', `content`='$content',`dateadded`='$dateadded',`isfeatured`='$markasfeautured' WHERE `id`='$id';";
+
+
 				$res =  $api->ExecuteNonQuery($qry);
 				echo $res;
 				exit();

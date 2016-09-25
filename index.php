@@ -62,7 +62,6 @@
             <li>Bread and Pastry Production</li>
             <li>Food Safety &amp; Hygiene</li>
             <li>Healthy Cooking at Sea and Nutritional Education</li>
-            <li>Messman to Chief Cook career Development Program</li>
         </ul>
         <a href="services.php">READ MORE</a>
     </div>
@@ -71,11 +70,26 @@
 <div class="home-content-wrapper news">
     <div class="c-sm-7 details">
         <h3>IN THE NEWS</h3>
-        <h4>The Oceanic Hospitality Training Centre Launches Own Website</h4>
-        <p>One of the top hospitality and culinary training center, The Oceanic Hospitality Training Centre launches their website, www.oceanichtc.com to increase their presence in the worldwide web</p>
+        <?php
+        require_once("api.php");
+        $con = new ConnectionDB();
+        $api = new Api($con);
+        $qry = "SELECT `id`,`title`,`content`,`dateadded`,`imagepath`,`isfeatured` FROM `tblnews` WHERE `isfeatured`=1";
+        $result = $api->ExecuteReader($qry);
+        $row = mysqli_fetch_assoc($result);
+        $title = $row['title'];
+        $imgsrc = $row['imagepath'];
+        $content = $row['content'];
+        $date = new DateTime($row['dateadded']);
+        $date = $date->format('Y-m-d');
+        if(strlen($content) > 200) { $content = substr($content, 0, 185)."..."; }
+        ?>
+        <h4><?php echo $title; ?></h4>
+        <p><?php echo $content; ?></p>
         <a href="news.php">READ MORE</a>
     </div>
-    <div class="c-sm-5 image"></div>
+    <!-- <img src="<?php //echo $imgsrc; ?>" /> IMAGE-->
+    <div class="c-sm-5 image" style="background-image: url(<?php echo $imgsrc; ?>)"></div>
 </div>
 <div class="video-wrapper">
     <div class="flex-video-wrap">

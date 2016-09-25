@@ -12,10 +12,12 @@ if(isset($_FILES['file'])){
 		$title = $_POST['title'];
 		$content = $_POST['content'];
 		$dateadded = $_POST['date'];
+		$markasfeautured = $_POST['markasfeautured'];
 
 		$arr = array('title' => $title,
 					 'content'=>$content,
-				 	 'dateadd'=>$dateadded);
+				 	 'dateadd'=>$dateadded,
+				 	'markasfeautured'=>$markasfeautured);
 
 		$validate = new Validation();
  		$validate->Validate($arr);
@@ -26,9 +28,18 @@ if(isset($_FILES['file'])){
 
 		$dateadded = $dateadded." 00:00:00";
 		$path = $_FILES['file']['name'];
-		$qry ="INSERT INTO `tblnews`(`title`,`content`,`imagepath`,`dateadded`)VALUES('".filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES)."','".filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES)."','$targetPath','$dateadded');";
+		$content = filter_var($content, FILTER_SANITIZE_MAGIC_QUOTES);
+		$title = filter_var($title, FILTER_SANITIZE_MAGIC_QUOTES);
 
 		$con = new ConnectionDB();
+		$api = new Api($con);
+
+		if(intval($markasfeautured)==1){
+			$qry = "UPDATE `tblnews` SET `isfeatured`='0' WHERE `id`>0";
+			$api->ExecuteNonQuery($qry);
+		}
+		$qry ="INSERT INTO `tblnews`(`title`,`content`,`imagepath`,`dateadded`,`isfeatured`)VALUES('".$title."','".$content."','$targetPath','$dateadded','$markasfeautured');";
+
 		$api = new Api($con);
 		$res =  $api->ExecuteNonQuery($qry);
 

@@ -7,7 +7,7 @@ if($page == "") { ?>
     <div class="admin-wrapper">
         <a href="?page=home"><p class="admin-pages">HOME</p></a>
         <a href="?page=aboutus"><p class="admin-pages">ABOUT US</p></a>
-        <a href="?page=services"><p class="admin-pages">SERVICES</p></a>
+        <!-- <a href="?page=services"><p class="admin-pages">SERVICES</p></a> -->
         <a href="?page=news"><p class="admin-pages">NEWS</p></a>
         <a href="?page=gallery"><p class="admin-pages">GALLERY</p></a>
     </div>

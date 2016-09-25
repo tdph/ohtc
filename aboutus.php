@@ -47,6 +47,7 @@
             <li>People Development</li>
             <li>Passion for Results</li>
             <li>Environmental Awareness</li>
+            <li>Safety First</li>
             <li>Team Work</li>
             <li>Love for details</li>
         </ul>

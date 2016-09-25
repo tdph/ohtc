@@ -34,44 +34,34 @@
     <button type="button" id="btn-browse-team" name="btn-browse-team">BROWSE</button>
     <input type="text" id="team-name" name="team-name"  placeholder="Name..." value="<?php echo $name; ?>"/>
     <input type="text" id="team-position" name="team-position"  placeholder="Position..." value="<?php echo $pos; ?> "/>
-    <input type="text" id="team-description" name="team-description"  placeholder="Description..." value="<?php echo $desc; ?>"/>
-
+    <textarea id="team-description" name="team-description" placeholder="Description..."><?php echo $desc; ?></textarea>
     <?php echo $btn; ?>
-
     <div class="progress">
         <div id="progressorteam" class="active progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">
         </div>
-    </div>
-    <div>
-      <?php
-
-      $display = (isset($_GET['edit']) && isset($_GET['id']) && $_GET['edit']=="ourteam" && $_GET['id']!='')?$_GET['id']:'';
-      $qry = "SELECT `id`,`name`,`position`,`description`,`imagepath`,`dateadded` FROM `tblourteam`;";
-      $con = new ConnectionDB();
-      $api = new Api($con);
-      $result = $api->ExecuteReader($qry);
-      $c = 0;
-      $cnt = 0;
-      while($row = mysqli_fetch_assoc($result)) {
-          $cnt++;
-          if($c == 0) { ?> <div class="ourteam_wrapper"> <?php } ?>
-          <?php
-            if($display!=$row['id']){
-          ?>
-          <div class="image_wrapper c-sm-6 c-md-3" id="<?php echo $row['id']; ?>">
-              <span data-id="<?php echo $row["id"]; ?>" class="btn-remove-ourteam glyphicon glyphicon-remove" style="cursor:pointer;"></span>
-              <img  id="ourteam<?php echo $row['id']; ?>" src="<?php  echo substr($row['imagepath'],3);  ?>" border="0" />
-              Name: <span clas="label-default" id="<?php echo $row['id']; ?>name"><?php  echo $row["name"]; ?></span><br/>
-              Position: <span clas="label-default" id="<?php echo $row['id']; ?>position"><?php echo $row["position"]; ?></span><br/>
-              Description:<span clas="label-default" id="<?php echo $row['id']; ?>description"><?php echo  $row["description"]; ?></span><br/>
-              <button type="button" id="btn_ourteam_edit" value="<?php echo $row['id']; ?>" onclick="edit(<?php echo $row['id']; ?>)">EDIT</button>
-          </div>
-          <?php  } ?>
-          <?php $c++;
-          if($c == 4 || $cnt == mysqli_num_rows($result)) { $c = 0; ?></div><?php }
-      }
-      ?>
-    </div>
+    </div><?php
+    $display = (isset($_GET['edit']) && isset($_GET['id']) && $_GET['edit']=="ourteam" && $_GET['id']!='')?$_GET['id']:'';
+    $qry = "SELECT `id`,`name`,`position`,`description`,`imagepath`,`dateadded` FROM `tblourteam`;";
+    $con = new ConnectionDB();
+    $api = new Api($con);
+    $result = $api->ExecuteReader($qry);
+    $c = 0;
+    $cnt = 0;
+    while($row = mysqli_fetch_assoc($result)) {
+        $cnt++;
+        if($c == 0) { ?> <div class="ourteam_wrapper"> <?php }
+        if($display!=$row['id']) { ?>
+        <div class="image-wrapper c-sm-6 c-md-3" id="<?php echo $row['id']; ?>">
+            <img  id="ourteam<?php echo $row['id']; ?>" src="<?php  echo substr($row['imagepath'],3);  ?>" border="0" />
+            <p clas="label-default" id="<?php echo $row['id']; ?>name"><?php  echo $row["name"]; ?></p>
+            <p clas="label-default" id="<?php echo $row['id']; ?>position"><?php echo $row["position"]; ?></p>
+            <button type="button" id="btn_ourteam_edit" value="<?php echo $row['id']; ?>" onclick="edit(<?php echo $row['id']; ?>)">EDIT</button>
+            <button type="button" data-id="<?php echo $row["id"]; ?>"  class="btn-remove-ourteam">DELETE</button>
+        </div>
+      <?php }
+      $c++;
+      if($c == 4 || $cnt == mysqli_num_rows($result)) { $c = 0; ?></div><?php }
+    }?>
 </div>
 
 

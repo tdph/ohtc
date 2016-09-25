@@ -127,11 +127,11 @@ function getGallery(admin) {
                 var ourteam = "";
                 for(var i = 0; i < count; i++) {
                     if(c == 0) { x++; $("#gallery_container").append("<div id='gc" + x + "' class='gallery_wrapper'>"); }
-                    $("#gc"+x).append("<a href='" + resp[i].imagepath + "' data-lightbox='" + resp[i].title + "' data-title='" + resp[i].title + "'><div class='image_wrapper c-sm-6 c-md-3'>" +
+                    $("#gc"+x).append("<a href='" + resp[i].imagepath + "' data-lightbox='gallery' data-title='" + resp[i].description + "'><div class='image_wrapper c-sm-6'>" +
                     //"<span data-id='gallery" + resp[i].id +"' class='btn-remove-carousel glyphicon glyphicon-remove'></span>" +
                     "<img src='" + resp[i].imagepath + "'><span class='image-title'>" + resp[i].title + "</span></div></a>");
                     c++;
-                    if(c == 4) { c = 0; $(".content").append("</div>"); }
+                    if(c == 2) { c = 0; $(".content").append("</div>"); }
                 }
                 $('#ourteam').html(ourteam);
              }
@@ -402,18 +402,20 @@ $( document ).ready(function() {
         }
     }
     function UploadFor_News(isupdate,id){
+
         isupdate = isupdate !== undefined ? isupdate : false;
         id = id !== undefined ? id : -1;
         if(_('news-title').value.trim()==""){ alert("Title required"); return;}
         if(_('news-date').value.trim()==""){alert("Date required"); return;}
         if(_('news-description').value.trim()==""){alert("Description required"); return;}
-        if(_('newsimg').src!='' && _('upload-news').files.length==0){alert("Browse a photo required");return;}
+        if(_('newsimg').src=='' && _('upload-news').files.length==0){alert("Browse a photo required");return;}
 
         var frm =  new FormData();
         frm.append("file",_('upload-news').files[0]);
         frm.append("title",_('news-title').value);
         frm.append("date",_('news-date').value);
         frm.append("content",_('news-description').value);
+        frm.append("markasfeautured",(_('markasfeautured').checked?1:0));
 
         if(isupdate==false && id==-1)AjaxUsingJquery(frm,"parser/news_insert.php","./admin.php?page=news",false,'');
         if(isupdate==true && id!=-1){

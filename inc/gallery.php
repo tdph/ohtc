@@ -56,9 +56,9 @@
               if($display!=$row[0]){
             ?>
             <div class="image_wrapper c-sm-6 c-md-3">
-                <span data-id="<?php echo $row[0]; ?>" class="btn-remove-gallery glyphicon glyphicon-remove"></span>
                 <img id="gallery<?php echo $row[0]; ?>" src="<?php echo $row[3]; ?>" />
                 <button type="button"  id="galleryedit"  value="<?php echo $row[0]; ?>"  onclick="editGallery(<?php echo $row[0]; ?>)" >EDIT</button>
+                <button type="button" data-id="<?php echo $row[0]; ?>" class="btn-remove-gallery">DELETE</button>
             </div>
             <?php  } ?>
             <?php $c++;

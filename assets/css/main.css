@@ -3100,12 +3100,12 @@ hr {
 .gallery_wrapper {
   width: 100%;
   min-height: 200px;
-  padding: 50px 50px 20px 50px;
+  padding: 0 50px 0 50px;
 }
 
 @media (max-width: 991px) {
   .gallery_wrapper {
-    padding: 50px 20px 20px 20px;
+    padding: 0 20px;
   }
 }
 
@@ -3122,24 +3122,12 @@ hr {
 }
 
 .gallery_wrapper .image_wrapper img {
+  object-fit: cover;
   width: 100%;
-  height: auto;
-  min-height: 200px;
+  height: 300px;
   border: 1px solid #CCC;
   transition: all 0.3s ease-in-out;
   box-shadow: 0 50px 30px -30px rgba(0, 0, 0, 0.3);
-}
-
-@media (max-width: 991px) {
-  .gallery_wrapper .image_wrapper img {
-    min-height: 300px;
-  }
-}
-
-@media (max-width: 767px) {
-  .gallery_wrapper .image_wrapper img {
-    min-height: 0;
-  }
 }
 
 .gallery_wrapper .image_wrapper .image-title {
@@ -3355,6 +3343,14 @@ hr {
   box-shadow: 0 50px 30px -30px rgba(0, 0, 0, 0.3);
 }
 
+.admin-aboutus #imgteam {
+  margin: 0 10px;
+  border-radius: 50%;
+  max-width: 150px;
+  height: auto;
+  margin-bottom: -15px;
+}
+
 .admin-aboutus .facility-wrapper .image-wrapper {
   display: inline-block;
   padding: 20px 10px;
@@ -3364,6 +3360,10 @@ hr {
 .admin-aboutus .facility-wrapper .image-wrapper span {
   font-size: 1.5em;
   cursor: pointer;
+}
+
+.admin-aboutus .facility-wrapper .image-wrapper button {
+  float: left;
 }
 
 .admin-aboutus .facility-wrapper .image-wrapper .image-title {
@@ -3376,4 +3376,59 @@ hr {
   width: 100%;
   height: auto;
   box-shadow: 0 50px 30px -30px rgba(0, 0, 0, 0.3);
+}
+
+.admin-aboutus .ourteam_wrapper {
+  overflow: auto;
+}
+
+.admin-aboutus .ourteam_wrapper .image-wrapper {
+  display: inline-block;
+  padding: 20px;
+  text-align: center;
+}
+
+.admin-aboutus .ourteam_wrapper .image-wrapper p {
+  float: left;
+  width: 100%;
+  clear: both;
+  line-height: 15px;
+}
+
+.admin-aboutus .ourteam_wrapper .image-wrapper button {
+  float: left;
+  margin-right: 5px;
+}
+
+.admin-aboutus .ourteam_wrapper .image-wrapper .image-title {
+  width: 100%;
+  text-align: center;
+}
+
+.admin-aboutus .ourteam_wrapper .image-wrapper img {
+  clear: both;
+  cursor: pointer;
+  width: 60%;
+  height: auto;
+  border-radius: 50%;
+  margin: 10px auto 20px auto;
+  box-shadow: 0 50px 30px -30px rgba(0, 0, 0, 0.3);
+}
+
+.admin-gallery #galleryimg {
+  max-width: 200px;
+  height: auto;
+  margin: 0 10px;
+  margin-bottom: -15px;
+}
+
+.admin-news #newsimg {
+  max-width: 200px;
+  height: auto;
+  margin: 0 10px;
+  margin-bottom: -15px;
+}
+
+.admin-news .article_wrapper {
+  padding: 10px 0;
 }
