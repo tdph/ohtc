@@ -37,7 +37,7 @@
     </div>
     <div class="wwa_wrapper dark" id="mission">
         <h3>Our Mission</h3>
-        <p>Is to create a strong training environment where we build up and develop professionals in all areas of the Maritime and shore based Hospitality sector for the benefit of our customers and clients and where people come first</p>
+        <p>To create a strong training environment where we build up and develop professionals in all areas of the Maritime and shore based Hospitality sector for the benefit of our customers and clients and where people come first</p>
     </div>
     <div class="wwa_wrapper dark" id="values">
         <h3>Our Values</h3>
