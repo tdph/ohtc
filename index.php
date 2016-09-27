@@ -47,7 +47,7 @@
 <div class="home-content-wrapper aboutus">
     <div class="c-sm-7 details dark">
         <h3>ABOUT US</h3>
-        <h4>OHTC is one of the most advanced state of the art culinary and hospitality training center in the Philippines.</h4>
+        <h4>OHTC is one of the most advanced state of the art culinary and hospitality training centers in the Philippines.</h4>
         <a href="aboutus.php">READ MORE</a>
     </div>
     <div class="c-sm-5 image"></div>

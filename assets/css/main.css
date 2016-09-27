@@ -2754,9 +2754,6 @@ hr {
   padding: 50px;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
 }
 
 @media (max-width: 991px) {
@@ -2779,6 +2776,7 @@ hr {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  overflow: auto;
   transition: all 0.3s ease-in-out;
 }
 
